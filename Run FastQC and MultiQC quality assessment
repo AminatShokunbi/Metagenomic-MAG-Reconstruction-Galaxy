@@ -1,0 +1,19 @@
+- Raw paired-end reads were assessed using FastQC.
+- FastQC generated paired RawData reports for the six samples.
+- The FastQC output collection was flattened into 12 individual datasets.
+- MultiQC was used to aggregate the 12 FastQC outputs into a single quality-control report.
+
+
+6 paired-end samples
+        ↓
+FastQC
+        ↓
+6 pairs of FastQC reports
+        ↓
+Flatten FastQC output collection
+        ↓
+12 individual FastQC outputs
+        ↓
+MultiQC
+        ↓
+Combined QC report
