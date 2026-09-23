@@ -1,0 +1,23 @@
+**Working Mechanism of FastQC**
+
+FastQC does not alter the reads. It checks the quality and characteristics of the reads.
+
+Phred score: FastQC reads the Phred quality scores already present in the FASTQ file. Higher Phred scores indicate more reliable base calls.
+
+Per-base quality: Checks the quality score at each position along the reads, e.g., positions 1, 2, 3...150.
+
+Per-sequence quality: Checks the average quality of each complete read, e.g., ATGCGCGATGCTAGC.
+
+Per-base sequence content: Checks the proportion of A, T, G and C at each position across the reads.
+
+GC content: Calculates the percentage of G and C in each read and examines their distribution across the dataset.
+
+N content: When the sequencer cannot confidently identify a base as A, T, G or C, it may represent it as N. FastQC checks the frequency of these N bases.
+
+Sequence length: Checks the distribution of read lengths. Longer reads do not necessarily mean better-quality reads.
+
+Sequence duplication: Checks how frequently identical sequences occur. High duplication may result from PCR bias or genuinely abundant biological sequences, so duplicates should not automatically be removed.
+
+Overrepresented sequences: Identifies sequences occurring much more frequently than expected, which may represent adapters, contaminants, PCR artifacts, or abundant biological sequences.
+
+Adapter content: Adapters are artificial DNA sequences added during library preparation. FastQC detects adapter sequences that may remain in the reads but does not remove them.
