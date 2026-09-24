@@ -55,3 +55,20 @@ Final MAGs
 
 The workflow and associated results will be added progressively as each
 stage of the analysis is completed.
+
+
+## Current Progress
+
+- [x] SRA accession selection
+- [x] Raw read retrieval using Galaxy
+- [x] Paired-end read organization
+- [x] Initial FastQC
+- [x] MultiQC summary
+- [x] Adapter identification
+- [x] Adapter and poly-A trimming with Cutadapt
+- [ ] Post-trimming FastQC and MultiQC evaluation
+- [ ] Metagenomic assembly
+- [ ] Genome binning
+- [ ] Bin refinement
+- [ ] MAG quality assessment
+- [ ] Taxonomic classification
