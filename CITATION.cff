@@ -11,11 +11,9 @@ authors:
     orcid: "https://orcid.org/0000-0003-4634-4514"
     affiliation: "Instituto Politécnico Nacional"
 
-version: "v1.0.1"
+version: "v1.0.2"
 
 date-released: "2026-10-04"
-
-doi: "10.5281/zenodo.23144502"
 
 repository-code: "https://github.com/AminatShokunbi/Metagenomic-MAG-Reconstruction-Galaxy"
 
