@@ -272,20 +272,20 @@ The repository contains `CITATION.cff`, `CITATIONS.md`, an MIT `LICENSE`, a chan
 
 ## Citation
 
-If you use this workflow or its documentation, please cite the archived Zenodo release:
+If you use this software project or its documentation generally, cite the Zenodo **project DOI (all versions)**:
 
-Shokunbi, A. O. (2026). *Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration* (Version v1.0.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23144502
+**Shokunbi, Aminat Olamide. _Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration_ [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23144501**
+
+The project DOI represents the software across archived versions and resolves to the latest Zenodo version. When an analysis, manuscript, or report depends on a specific archived release, use that release's version-specific DOI instead.
+
+### Version-specific archived releases
+
+- **v1.0.1:** https://doi.org/10.5281/zenodo.23144502
+- **v1.0.2:** DOI will be added after Zenodo archives the GitHub v1.0.2 release.
 
 ### Software citations
 
 The analyses documented in this repository were performed using Galaxy together with the bioinformatics tools listed above. Full bibliographic citations for Galaxy, SRA Toolkit/FasterQ Dump, FastQC, MultiQC, Cutadapt, Bowtie 2, MEGAHIT, QUAST, and MetaBAT 2 are maintained in [`CITATIONS.md`](CITATIONS.md).
-
-### DOI
-
-- **Project DOI (all versions):** https://doi.org/10.5281/zenodo.23144501
-- **Version v1.0.1 DOI:** https://doi.org/10.5281/zenodo.23144502
-
-The project DOI resolves to the latest archived version. The version-specific DOI should be used when referring specifically to Version v1.0.1.
 
 ## Author
 
