@@ -1,8 +1,8 @@
-# Bowtie2 read-recruitment summary
+# Bowtie2 Read-Recruitment Summary
 
-This document records evidence from the Galaxy Bowtie2 mapping-statistics collection generated after mapping the processed paired-end reads back to their corresponding sample-specific MEGAHIT assemblies. This is the **coverage-estimation/read-recruitment** Bowtie2 step used before `Calculate contig depths for MetaBAT2`; it is distinct from the earlier hg38 host-mapping demonstration.
+This document records evidence from the Galaxy Bowtie2 mapping-statistics collection generated after the processed paired-end reads were mapped back to their corresponding sample-specific MEGAHIT assemblies. This was the **coverage-estimation/read-recruitment** Bowtie2 step performed before `Calculate contig depths for MetaBAT2`; it was distinct from the earlier hg38 host-mapping demonstration.
 
-## Mapping results
+## Mapping Results
 
 | Sample | Paired reads reported by Bowtie2 | Overall alignment rate |
 |---|---:|---:|
@@ -11,14 +11,16 @@ This document records evidence from the Galaxy Bowtie2 mapping-statistics collec
 | SRR18276516 | 504,835 | 93.51% |
 | SRR18276520 | 581,241 | 89.92% |
 
-The mapping-statistics files for SRR30026879 and SRR30026880 additionally contain warnings that some mates were only one nucleotide long after preprocessing. Bowtie2 skipped those individual extremely short mates. Their complete Galaxy mapping-statistics outputs should therefore be retained with the analysis record rather than reducing those files to a single summary percentage.
+The mapping-statistics files for SRR30026879 and SRR30026880 additionally contained warnings indicating that some mates were only one nucleotide long after preprocessing. Bowtie2 skipped those individual extremely short mates. Their complete Galaxy mapping-statistics outputs were therefore retained with the analysis record rather than being reduced to a single summary percentage.
 
 ## Interpretation
 
-The high read-recruitment rates observed for the four samples summarized above confirm that a large fraction of their processed reads could be mapped back to their corresponding assemblies. This provided BAM alignments from which contig coverage could be estimated for MetaBAT2.
+The read-recruitment rates observed for the four samples summarized above showed that a large fraction of their processed reads mapped back to their corresponding assemblies. The resulting BAM alignments provided the coverage information required for subsequent contig-depth estimation and MetaBAT2 binning.
 
-However, a high overall mapping rate does **not** imply that the assembly is sufficiently contiguous for genome binning. In Version 1.0, QUAST showed that the assemblies contained too few sufficiently long contigs to support successful MetaBAT2 bin recovery. The mapping results therefore strengthen the interpretation that the zero-bin outcome was not simply caused by failure to perform read recruitment; assembly fragmentation remained the principal downstream constraint documented in this training dataset.
+However, a high overall mapping rate was not interpreted as evidence that an assembly was sufficiently contiguous for genome binning. In Version 1.0, QUAST showed that the assemblies contained relatively few sufficiently long contigs, and MetaBAT2 subsequently recovered no bins. Taken together, these observations indicated that successful read recruitment did not compensate for the limited contiguity of the demonstration assemblies. The zero-bin outcome was therefore interpreted in the context of the documented assembly fragmentation rather than being attributed simply to failure of the read-recruitment step.
 
-## Reproducibility note
+## Reproducibility Note
 
-The original Galaxy mapping-statistics collection contained six text outputs, one for each demonstration sample. Version 1.0 preserves this stage as evidence for the read-recruitment → BAM → contig-depth → MetaBAT2 workflow. Future datasets should be inspected both for alignment/coverage behavior and for assembly contiguity before interpreting binning performance.
+The original Galaxy mapping-statistics collection contained six text outputs, one for each demonstration sample. Version 1.0 retained this stage as evidence for the read-recruitment → BAM → contig-depth → MetaBAT2 analysis path.
+
+For subsequent datasets, both alignment/coverage behavior and assembly contiguity should be evaluated before binning performance is interpreted.
