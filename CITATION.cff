@@ -1,26 +1,32 @@
 cff-version: 1.2.0
 message: "If you use this workflow, please cite it using the metadata below."
+
 title: "Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration"
+
 type: software
+
 authors:
-  - family-names: Shokunbi
-    given-names: Aminat Olamide
-version: 1.0.0
-date-released: 2026-10-04
+  - family-names: "Shokunbi"
+    given-names: "Aminat Olamide"
+    orcid: "https://orcid.org/0000-0003-4634-4514"
+    affiliation: "Instituto Politécnico Nacional"
+
+version: "v1.0.1"
+
+date-released: "2026-10-04"
+
+doi: "10.5281/zenodo.23144502"
+
 repository-code: "https://github.com/AminatShokunbi/Metagenomic-MAG-Reconstruction-Galaxy"
-license: MIT
+
+license: "MIT"
+
 keywords:
   - metagenomics
   - MAG reconstruction
+  - metagenome-assembled genomes
   - Galaxy
   - MEGAHIT
   - MetaBAT2
   - genome binning
   - bioinformatics
-abstract: >-
-  A reproducible Galaxy-based training workflow documenting public metagenomic
-  read retrieval, quality control, preprocessing, metagenomic assembly,
-  assembly assessment, read recruitment, contig-depth estimation, and an
-  initial coverage-informed MetaBAT2 genome-binning attempt. Version 1.0
-  transparently records that no genome bins were recovered from the six
-  demonstration assemblies and does not claim successful MAG recovery.
