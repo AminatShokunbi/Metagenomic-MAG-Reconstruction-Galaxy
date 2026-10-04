@@ -66,8 +66,8 @@ stage of the analysis is completed.
 - [x] MultiQC summary
 - [x] Adapter identification
 - [x] Adapter and poly-A trimming with Cutadapt
-- [ ] Post-trimming FastQC and MultiQC evaluation
-- [ ] Metagenomic assembly
+- [x] Post-trimming FastQC and MultiQC evaluation
+- [x] Metagenomic assembly
 - [ ] Genome binning
 - [ ] Bin refinement
 - [ ] MAG quality assessment
