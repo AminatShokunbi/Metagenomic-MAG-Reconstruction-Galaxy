@@ -48,12 +48,14 @@ The zero-bin outcome was retained rather than progressively relaxing additional 
 
 ## Planned [2.0.0]
 
-Version 2.0 will use data suitable for extending the hands-on workflow beyond initial binning.
+Version 2.0 will use a larger and more suitable metagenomic read dataset to extend the hands-on workflow beyond the initial binning stage.
 
 Planned additions include:
 
-- explicit validation of nucleotide inputs before assembly/binning;
-- reconstruction from appropriate metagenomic nucleotide data;
+- reconstruction from raw metagenomic sequencing reads;
+- quality control and preprocessing;
+- metagenomic assembly/co-assembly as appropriate to the dataset;
+- read mapping and coverage estimation;
 - MetaBAT2 binning;
 - MaxBin2 binning;
 - CONCOCT binning where appropriate;
@@ -62,5 +64,3 @@ Planned additions include:
 - GTDB-Tk taxonomic classification;
 - construction of a quality-assessed final MAG catalogue;
 - updated Galaxy workflow export and reproducibility documentation.
-
-Version 2.0 will explicitly distinguish nucleotide contigs/bins (`.fna`, `.fa`, `.fasta`) from predicted protein files (`.faa`) and will retain the distinction between raw binner outputs, refined bins, quality-assessed MAGs, and final classified genomes.
