@@ -37,7 +37,7 @@ Galaxy should be cited independently of the individual bioinformatics tools exec
 
 > The Galaxy Community. (2026). Galaxy for accessible, reproducible, and collaborative data analyses: 2026 update. *Nucleic Acids Research*, **54**(W1), W105–W116. https://doi.org/10.1093/nar/gkag469
 
-Version 1.0 of this project was executed using a public Galaxy service. Citations for Galaxy do not replace citations for the individual software tools used in the workflow.
+Version 1.0 of this project was executed using a public Galaxy service. Citations for Galaxy do not replace citations for the individual software tools used in the workflow. Full citations for software implemented in Version 1.0 are provided in [`CITATIONS.md`](CITATIONS.md).
 
 ## Version 1.0 Workflow
 
@@ -101,6 +101,8 @@ practice assemblies
 | Assembly read recruitment | Bowtie2 | 2.5.5 | Mapping trimmed reads back to corresponding MEGAHIT contigs |
 | Coverage calculation | Calculate contig depths for MetaBAT2 | Galaxy implementation | Generation of MetaBAT2-compatible depth matrices |
 | Genome-binning attempt | MetaBAT2 | 2.18.23+galaxy0 | Coverage-informed clustering of assembled contigs into candidate bins |
+
+Complete bibliographic information for the platform and tools implemented in this release is maintained in [`CITATIONS.md`](CITATIONS.md).
 
 ## Bowtie2 Has Two Distinct Roles in This Project
 
@@ -259,13 +261,14 @@ Version 2.0 will preserve the distinction between raw binner outputs, DAS Tool-r
 - `data/` — accession and dataset information
 - `docs/` — detailed documentation of individual analysis stages
 - `workflow/` — exported Galaxy workflow and workflow documentation
+- `CITATIONS.md` — full citations for Galaxy and software implemented in Version 1.0
 - `CITATION.cff` — machine-readable citation metadata for GitHub/archival services
 - `CHANGELOG.md` — version history and release scope
 - `LICENSE` — MIT software license
 
 ## Release and Citation
 
-The repository contains `CITATION.cff`, an MIT `LICENSE`, a changelog, an exported Galaxy workflow, and explicit versioned documentation to support GitHub release and Zenodo archival.
+The repository contains `CITATION.cff`, `CITATIONS.md`, an MIT `LICENSE`, a changelog, an exported Galaxy workflow, and explicit versioned documentation to support GitHub release and Zenodo archival.
 
 ## Citation
 
@@ -273,13 +276,9 @@ If you use this workflow or its documentation, please cite the archived Zenodo r
 
 Shokunbi, A. O. (2026). *Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration* (Version v1.0.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23144502
 
-### Software platform citation
+### Software citations
 
-The analyses documented in this repository were performed using Galaxy. Users of this workflow should also cite the Galaxy platform:
-
-The Galaxy Community. (2026). Galaxy for accessible, reproducible, and collaborative data analyses: 2026 update. *Nucleic Acids Research*, **54**(W1), W105–W116. https://doi.org/10.1093/nar/gkag469
-
-Individual software tools used within Galaxy should additionally be cited according to their respective publications.
+The analyses documented in this repository were performed using Galaxy together with the bioinformatics tools listed above. Full bibliographic citations for Galaxy, SRA Toolkit/FasterQ Dump, FastQC, MultiQC, Cutadapt, Bowtie 2, MEGAHIT, QUAST, and MetaBAT 2 are maintained in [`CITATIONS.md`](CITATIONS.md).
 
 ### DOI
 
