@@ -4,7 +4,7 @@
 
 Following metagenomic assembly with MEGAHIT, assembly quality was evaluated using **QUAST v5.3.0** in Galaxy.
 
-Assembly assessment is necessary before genome binning because successful execution of an assembler does not necessarily indicate that the resulting contigs are sufficiently contiguous for reliable genome reconstruction.
+Assembly assessment was performed before genome binning because successful execution of an assembler does not necessarily indicate that the resulting contigs are sufficiently contiguous for reliable genome reconstruction.
 
 ## QUAST Assessment
 
@@ -16,11 +16,11 @@ QUAST was used to summarize characteristics of the MEGAHIT assemblies, including
 - N50
 - GC content
 
-These metrics provide information about assembly fragmentation and contiguity.
+These metrics were used to evaluate assembly fragmentation and contiguity.
 
-## Preliminary Assembly Results
+## Assembly Results
 
-The preliminary QUAST results indicated substantial fragmentation in some of the assemblies.
+The QUAST results indicated substantial fragmentation in some of the assemblies.
 
 ### SRR18276513
 
@@ -50,23 +50,21 @@ The assembly produced:
 
 ## Interpretation
 
-These preliminary results indicate limited assembly contiguity for the two datasets summarized above.
+These results indicated limited assembly contiguity for the two datasets summarized above.
 
-In particular, the relatively small largest-contig sizes and low N50 values indicate highly fragmented assemblies.
+In particular, the relatively small largest-contig sizes and low N50 values were consistent with highly fragmented assemblies.
 
-This is important for downstream MAG reconstruction because genome binning relies on assembled contigs, and highly fragmented assemblies can reduce the amount of genomic information available for recovering coherent genome bins.
+This limitation was relevant to downstream MAG reconstruction because genome binning depends on assembled contigs, and extensive fragmentation can reduce the amount of sequence information available for recovering coherent genome bins.
 
-However, assembly statistics alone do not determine whether useful genome bins can be recovered.
+However, assembly statistics alone were not treated as sufficient to determine whether useful genome bins could be recovered. The assemblies were therefore retained for the subsequent hands-on genome-binning stage so that the complete analytical decision process could be documented.
 
-Because this project is also intended to document the complete practical workflow from raw reads toward MAG reconstruction, these assemblies are being retained for downstream analysis.
-
-Any genome bins recovered from these assemblies will therefore require critical evaluation using MAG-quality metrics before they can be interpreted as reconstructed genomes.
+The subsequent MetaBAT2 analyses recovered no candidate genome bins, including after the documented training-specific reduction of the minimum contig threshold. Accordingly, no output from these assemblies was interpreted as a MAG. The complete binning outcome is documented in [`07_metabat2_binning_attempt.md`](07_metabat2_binning_attempt.md).
 
 ## Important Distinction
 
-At this stage of the workflow, the outputs are **metagenomic assemblies**, not MAGs.
+At the assembly-quality stage, the outputs were **metagenomic assemblies**, not MAGs.
 
-The progression is:
+The analytical progression was:
 
 ```text
 Sequencing reads
@@ -91,3 +89,6 @@ Candidate genome bins
        |
        v
 MAG quality assessment
+```
+
+In Version 1.0, the workflow reached the genome-binning attempt, but no candidate bins were recovered; consequently, MAG-quality assessment was not performed.
