@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.0.2] - 2026-10-04
+
+### Added
+- Added `CITATIONS.md` containing citations for the Galaxy platform and software implemented in the Version 1.0 workflow.
+- Added citations for SRA Toolkit/FasterQ Dump, FastQC, MultiQC, Cutadapt, Bowtie 2, MEGAHIT, QUAST, and MetaBAT 2.
+- Added links from the README to the complete software citation record.
+
+### Changed
+- Updated repository documentation so that the archived workflow citation is clearly distinguished from citations for the software used to perform the analyses.
+- Updated the repository-organization and citation sections of the README to include `CITATIONS.md`.
+
+### Notes
+Version 1.0.2 is a documentation and citation patch. No scientific analyses, datasets, workflow parameters, assembly statistics, binning outcomes, or conclusions were changed.
+
+Software planned for Version 2.0 but not implemented in Version 1.0 is not presented as software used in the Version 1.0 analysis.
+
 ## [1.0.1] - 2026-10-04
 
 ### Changed
