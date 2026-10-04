@@ -281,7 +281,7 @@ The project DOI represents the software across archived versions and resolves to
 ### Version-specific archived releases
 
 - **v1.0.1:** https://doi.org/10.5281/zenodo.23144502
-- **v1.0.2:** DOI will be added after Zenodo archives the GitHub v1.0.2 release.
+- **v1.0.2:** https://doi.org/10.5281/zenodo.23145661
 
 ### Software citations
 
