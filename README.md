@@ -108,6 +108,8 @@ The MEGAHIT assemblies used in Version 1.0 were generated from the Cutadapt-proc
 
 After assembly, the Cutadapt-processed reads were mapped back to their corresponding sample-specific MEGAHIT contigs. These BAM alignments were then converted into contig-depth matrices for coverage-informed MetaBAT2 binning.
 
+The archived mapping statistics provide direct evidence for this stage. Four samples had overall Bowtie2 alignment rates of **88.84–93.51%**; two additional samples contained warnings for individual one-nucleotide mates that Bowtie2 skipped. High read recruitment did not overcome the severe assembly fragmentation identified by QUAST. See [`docs/08_bowtie2_read_recruitment_summary.md`](docs/08_bowtie2_read_recruitment_summary.md).
+
 This second mapping step is part of the genome-binning workflow and should not be confused with host screening.
 
 ## MetaBAT2 Binning Outcome
@@ -151,8 +153,9 @@ Detailed stage-specific documentation is available in `docs/`:
 5. `05_metagenomic_assembly.md` — MEGAHIT assembly
 6. `06_assembly_quality.md` — QUAST assessment
 7. `07_metabat2_binning_attempt.md` — read recruitment, depth calculation, MetaBAT2 binning attempts, and Version 1.0 endpoint
+8. `08_bowtie2_read_recruitment_summary.md` — mapping-statistics evidence supporting the coverage-estimation stage
 
-The `workflow/` directory contains the exported Galaxy workflow available for this project. Users should consult the written documentation together with the workflow file because Version 1.0 includes methodological decisions and later history operations that must be interpreted in context.
+The executable Galaxy workflow is preserved as [`workflow/MAG_RECOVERY_WORKFLOW.ga`](workflow/MAG_RECOVERY_WORKFLOW.ga). It records the actual Galaxy tool graph and parameters used during Version 1.0. Users should consult the written documentation together with the exported workflow because the historical workflow also preserves collection handling and troubleshooting operations that are important for auditability.
 
 ## Reproducibility Principles
 
@@ -188,6 +191,8 @@ The purpose is to make the analysis auditable and adaptable rather than to imply
 - [x] MetaBAT2 initial binning attempt
 - [x] MetaBAT2 relaxed training-specific binning attempt
 - [x] Documentation of the zero-bin outcome and assembly limitations
+- [x] Exported Galaxy workflow preserved for reproducibility
+- [x] Bowtie2 read-recruitment statistics documented
 
 ### Version 1.0 endpoint
 
@@ -197,15 +202,21 @@ This is intentional: those analyses require candidate genome bins, and Version 1
 
 ## Version 2.0 Roadmap
 
-Version 2.0 will continue the project using data suitable for hands-on demonstration of genome-resolved reconstruction.
+Version 2.0 will continue the project using a larger **raw shotgun metagenomic read dataset** suitable for hands-on demonstration of genome-resolved reconstruction.
 
 The planned architecture is:
 
 ```text
-Quality-controlled metagenomic data
+Raw paired-end shotgun metagenomic reads
               |
               v
-          Assembly
+     QC and preprocessing
+              |
+              v
+      Assembly/co-assembly
+              |
+              v
+Read mapping + coverage estimation
               |
       +-------+-------+
       |       |       |
@@ -240,12 +251,15 @@ Version 2.0 will preserve the distinction between raw binner outputs, DAS Tool-r
 - `data/` — accession and dataset information
 - `docs/` — detailed documentation of individual analysis stages
 - `workflow/` — exported Galaxy workflow and workflow documentation
+- `CITATION.cff` — machine-readable citation metadata for GitHub/archival services
+- `CHANGELOG.md` — version history and release scope
+- `LICENSE` — MIT software license
 
 ## Release and Citation
 
-This repository is being finalized as **Version 1.0** for archival release.
+This repository is being finalized as **Version 1.0.0** for archival release. The repository contains `CITATION.cff`, an MIT `LICENSE`, a changelog, an exported Galaxy workflow, and explicit versioned documentation to support GitHub release and Zenodo archival.
 
-After the Version 1.0 GitHub release is deposited in Zenodo, the version-specific DOI and archival citation should be added here.
+After the Version 1.0.0 GitHub release is deposited in Zenodo, the version-specific DOI and archival citation should be added here.
 
 Until the DOI is assigned, the repository may be cited as:
 
