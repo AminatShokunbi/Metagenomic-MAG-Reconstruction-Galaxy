@@ -33,6 +33,12 @@ The datasets were processed as paired-end sequencing reads in Galaxy.
 
 The workflow was implemented using the Galaxy platform, which provides a graphical environment for reproducible bioinformatic analysis while retaining relationships among tools, parameters, inputs, and outputs.
 
+Galaxy should be cited independently of the individual bioinformatics tools executed through the platform. The Galaxy Project currently recommends the following primary publication:
+
+> The Galaxy Community. (2026). Galaxy for accessible, reproducible, and collaborative data analyses: 2026 update. *Nucleic Acids Research*, **54**(W1), W105–W116. https://doi.org/10.1093/nar/gkag469
+
+Version 1.0 of this project was executed using a public Galaxy service. Citations for Galaxy do not replace citations for the individual software tools used in the workflow.
+
 ## Version 1.0 Workflow
 
 ```text
@@ -259,13 +265,21 @@ Version 2.0 will preserve the distinction between raw binner outputs, DAS Tool-r
 
 ## Release and Citation
 
- The repository contains `CITATION.cff`, an MIT `LICENSE`, a changelog, an exported Galaxy workflow, and explicit versioned documentation to support GitHub release and Zenodo archival.
+The repository contains `CITATION.cff`, an MIT `LICENSE`, a changelog, an exported Galaxy workflow, and explicit versioned documentation to support GitHub release and Zenodo archival.
 
 ## Citation
 
 If you use this workflow or its documentation, please cite the archived Zenodo release:
 
 Shokunbi, A. O. (2026). *Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration* (Version v1.0.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23144502
+
+### Software platform citation
+
+The analyses documented in this repository were performed using Galaxy. Users of this workflow should also cite the Galaxy platform:
+
+The Galaxy Community. (2026). Galaxy for accessible, reproducible, and collaborative data analyses: 2026 update. *Nucleic Acids Research*, **54**(W1), W105–W116. https://doi.org/10.1093/nar/gkag469
+
+Individual software tools used within Galaxy should additionally be cited according to their respective publications.
 
 ### DOI
 
