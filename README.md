@@ -1,5 +1,7 @@
 # Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23144501.svg)](https://doi.org/10.5281/zenodo.23144501)
+
 ## Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration
 
 This repository documents a reproducible, Galaxy-based workflow for progressing from public paired-end metagenomic sequencing reads through quality control, preprocessing, metagenomic assembly, assembly assessment, read recruitment, coverage estimation, and an initial genome-binning attempt.
@@ -257,13 +259,20 @@ Version 2.0 will preserve the distinction between raw binner outputs, DAS Tool-r
 
 ## Release and Citation
 
-This repository is being finalized as **Version 1.0.0** for archival release. The repository contains `CITATION.cff`, an MIT `LICENSE`, a changelog, an exported Galaxy workflow, and explicit versioned documentation to support GitHub release and Zenodo archival.
+ The repository contains `CITATION.cff`, an MIT `LICENSE`, a changelog, an exported Galaxy workflow, and explicit versioned documentation to support GitHub release and Zenodo archival.
 
-After the Version 1.0.0 GitHub release is deposited in Zenodo, the version-specific DOI and archival citation should be added here.
+## Citation
 
-Until the DOI is assigned, the repository may be cited as:
+If you use this workflow or its documentation, please cite the archived Zenodo release:
 
-Shokunbi, A. O. (2026). *Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration* [GitHub repository].
+Shokunbi, A. O. (2026). *Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration* (Version v1.0.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23144502
+
+### DOI
+
+- **Project DOI (all versions):** https://doi.org/10.5281/zenodo.23144501
+- **Version v1.0.1 DOI:** https://doi.org/10.5281/zenodo.23144502
+
+The project DOI resolves to the latest archived version. The version-specific DOI should be used when referring specifically to Version v1.0.1.
 
 ## Author
 
