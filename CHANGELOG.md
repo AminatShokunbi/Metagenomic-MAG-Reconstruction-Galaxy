@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.0.1] - 2026-10-04
+
+### Changed
+- Enabled archival of the Galaxy-based MAG reconstruction workflow through Zenodo.
+- Prepared repository metadata for persistent DOI-based citation.
+- No changes were made to the scientific workflow, analysis parameters, datasets, or conclusions.
+
+### Notes
+Version 1.0.1 is an archival and documentation patch release of Version 1.0.0.
+The underlying Galaxy workflow and documented genome-binning outcome are unchanged.
+
 ## [1.0.0] — 2026-10-04
 
 ### Release scope
