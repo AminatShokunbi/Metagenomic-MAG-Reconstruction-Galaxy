@@ -1,18 +1,22 @@
-# Reconstruction of Metagenome-Assembled Genomes from Raw Reads Using Galaxy
+# Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads
 
-This repository documents an ongoing, reproducible Galaxy-based workflow for reconstructing metagenome-assembled genomes (MAGs) from raw paired-end metagenomic sequencing reads.
+## Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration
 
-The project is being developed step by step to document both the computational procedures and the reasoning involved in progressing from raw sequencing reads to quality-assessed and taxonomically classified MAGs.
+This repository documents a reproducible, Galaxy-based workflow for progressing from public paired-end metagenomic sequencing reads through quality control, preprocessing, metagenomic assembly, assembly assessment, read recruitment, coverage estimation, and an initial genome-binning attempt.
+
+**Version 1.0 is a stable training and reproducibility release. It does not claim successful recovery of metagenome-assembled genomes (MAGs) from the six demonstration datasets.** Instead, it documents both the implemented computational procedure and the data-dependent limitation encountered when highly fragmented assemblies did not support genome-bin recovery with MetaBAT2.
+
+A subsequent **Version 2.0** is planned to extend the workflow through multi-binner genome reconstruction, DAS Tool integration, MAG quality assessment with CheckM/CheckM2, and taxonomic classification with GTDB-Tk using a dataset suitable for demonstrating those stages.
 
 ## Objective
 
-The objective of this project is to independently perform and document the complete bioinformatic workflow from raw metagenomic sequencing reads to reconstructed and taxonomically classified metagenome-assembled genomes (MAGs) using the Galaxy platform.
+The broader objective of this project is to independently perform and document a complete bioinformatic workflow from raw metagenomic sequencing reads to reconstructed, quality-assessed, and taxonomically classified MAGs using Galaxy.
 
-The repository also serves as a practical record of the tools, parameters, intermediate outputs, quality-control decisions, and workflow structure used during the reconstruction process.
+Version 1.0 establishes and documents the workflow through the first coverage-informed genome-binning attempt while preserving tool settings, intermediate operations, quality-control decisions, and unsuccessful outcomes required for reproducibility.
 
-## Dataset
+## Demonstration Dataset
 
-Six publicly available metagenomic sequencing datasets from the NCBI Sequence Read Archive (SRA) are being used:
+Six publicly available metagenomic sequencing datasets from the NCBI Sequence Read Archive (SRA) were used:
 
 - SRR18276513
 - SRR30026880
@@ -21,189 +25,234 @@ Six publicly available metagenomic sequencing datasets from the NCBI Sequence Re
 - SRR18276516
 - SRR18276520
 
-The datasets are processed as paired-end sequencing reads in Galaxy.
+The datasets were processed as paired-end sequencing reads in Galaxy.
 
 ## Platform
 
-The workflow is implemented using the Galaxy platform.
+The workflow was implemented using the Galaxy platform, which provides a graphical environment for reproducible bioinformatic analysis while retaining relationships among tools, parameters, inputs, and outputs.
 
-Galaxy provides a graphical environment for constructing reproducible bioinformatic workflows while maintaining information about tool versions, parameters, inputs, and outputs.
+## Version 1.0 Workflow
 
-## Overall MAG Reconstruction Strategy
+```text
+NCBI SRA accessions
+        |
+        v
+   FasterQ Dump
+        |
+        v
+Paired-end FASTQ reads
+        |
+        v
+ FastQC / MultiQC
+        |
+        v
+     Cutadapt
+        |
+        v
+Post-trimming QC
+        |
+        v
+     MEGAHIT
+        |
+        v
+       QUAST
+        |
+        v
+Bowtie2 read recruitment
+reads -> corresponding assembly
+        |
+        v
+      BAM files
+        |
+        v
+Calculate contig depths
+    for MetaBAT2
+        |
+        v
+    Depth matrices
+        |
+        v
+     MetaBAT2
+        |
+        v
+No bins recovered from
+practice assemblies
+```
 
-The complete project is designed to progress through the following stages:
+## Tools Implemented in Version 1.0
 
-Raw metagenomic reads  
-↓  
-Read quality assessment  
-↓  
-Read preprocessing  
-↓  
-Metagenomic assembly  
-↓  
-Assembly quality assessment  
-↓  
-Genome binning  
-↓  
-Bin refinement  
-↓  
-MAG quality assessment  
-↓  
-Taxonomic classification  
-↓  
-Final MAG catalogue
-
-The repository is being updated progressively as these stages are implemented.
-
-## Current Implemented Galaxy Workflow
-
-The workflow currently implemented in Galaxy includes:
-
-SRA accessions  
-↓  
-FasterQ Dump  
-↓  
-Paired-end FASTQ reads  
-↓  
-FastQC  
-↓  
-Cutadapt  
-↓  
-Post-trimming FastQC  
-↓  
-MultiQC  
-↓  
-MEGAHIT  
-↓  
-QUAST
-
-This represents the currently implemented primary analysis path from SRA read retrieval through metagenomic assembly and assembly quality assessment.
-
-## Bowtie2 Mapping Demonstration
-
-Bowtie2 was additionally incorporated as a separate branch of the workflow to demonstrate read mapping and the principle of host-read identification/removal in Galaxy.
-
-In the current exported workflow, Bowtie2 receives the quality-filtered paired reads generated by Cutadapt.
-
-The MEGAHIT assembly represented in this version of the workflow was performed directly using the Cutadapt-processed paired reads rather than Bowtie2-derived unmapped reads.
-
-Therefore, Bowtie2 is documented here as an additional mapping/host-removal demonstration and not as a preprocessing requirement for the MEGAHIT assembly used in this workflow version.
-
-## Tools Implemented So Far
-
-| Analysis stage | Tool | Version | Purpose |
+| Analysis stage | Tool | Version recorded during project | Purpose |
 |---|---|---:|---|
 | SRA read retrieval | FasterQ Dump | 3.1.1 | Retrieval of sequencing reads from SRA accessions |
 | Read quality assessment | FastQC | 0.74 | Evaluation of sequencing-read quality |
-| Read preprocessing | Cutadapt | 5.2 | Adapter and poly-A trimming and read preprocessing |
-| Combined QC assessment | MultiQC | 1.35 | Aggregation and comparison of quality-control reports |
-| Read mapping demonstration | Bowtie2 | 2.5.5 | Demonstration of read mapping and host-read identification |
+| Read preprocessing | Cutadapt | 5.2 | Adapter/poly-A trimming and read preprocessing |
+| Combined QC assessment | MultiQC | 1.35 | Aggregation and comparison of QC reports |
+| Host-mapping demonstration | Bowtie2 | 2.5.5 | Demonstration of read mapping against hg38 |
 | Metagenomic assembly | MEGAHIT | 1.2.9 | De novo assembly of metagenomic reads |
-| Assembly assessment | QUAST | 5.3.0 | Assessment of metagenomic assembly statistics |
+| Assembly assessment | QUAST | 5.3.0 | Assessment of assembly contiguity and fragmentation |
+| Assembly read recruitment | Bowtie2 | 2.5.5 | Mapping trimmed reads back to corresponding MEGAHIT contigs |
+| Coverage calculation | Calculate contig depths for MetaBAT2 | Galaxy implementation | Generation of MetaBAT2-compatible depth matrices |
+| Genome-binning attempt | MetaBAT2 | 2.18.23+galaxy0 | Coverage-informed clustering of assembled contigs into candidate bins |
 
-Tool versions are recorded from the exported Galaxy workflow.
+## Bowtie2 Has Two Distinct Roles in This Project
 
-## Planned MAG Reconstruction Stages
+Bowtie2 was used in two conceptually different contexts.
 
-Following assembly assessment, the project will proceed to genome-resolved reconstruction.
+### 1. Host-mapping demonstration
 
-Planned stages include:
+An earlier workflow branch mapped quality-controlled reads against the human hg38 reference genome to demonstrate the principle of host-read identification/removal.
 
-### Genome binning
+The MEGAHIT assemblies used in Version 1.0 were generated from the Cutadapt-processed paired reads and were not generated from the unmapped reads of this hg38 demonstration branch.
 
-Candidate tools:
+### 2. Read recruitment for genome binning
 
-- MetaBAT2
-- MaxBin2
-- CONCOCT
+After assembly, the Cutadapt-processed reads were mapped back to their corresponding sample-specific MEGAHIT contigs. These BAM alignments were then converted into contig-depth matrices for coverage-informed MetaBAT2 binning.
 
-These tools will be used to group assembled contigs into candidate metagenome-assembled genomes using sequence composition and/or abundance information.
+This second mapping step is part of the genome-binning workflow and should not be confused with host screening.
 
-### Bin refinement
+## MetaBAT2 Binning Outcome
 
-Candidate bins generated by different binning algorithms will be compared and refined.
+The initial MetaBAT2 run used coverage information and a minimum contig size of **2,500 bp**. No bins were recovered from the six demonstration assemblies.
 
-DAS Tool is planned for integration and selection of higher-quality, non-redundant genome bins.
+QUAST inspection showed substantial assembly fragmentation. Examples included:
 
-### MAG quality assessment
+| Sample | Contigs >=500 bp | Contigs >=1,000 bp | Contigs >=5,000 bp | Largest contig | N50 |
+|---|---:|---:|---:|---:|---:|
+| SRR18276513 | 32 | 0 | 0 | 743 bp | 559 bp |
+| SRR30026879 | 61 | 24 | 1 | 10,648 bp | 1,508 bp |
+| SRR30026880 | 141 | 35 | 3 | 10,646 bp | 1,104 bp |
 
-CheckM and/or CheckM2 will be used to evaluate reconstructed MAGs, particularly with respect to:
+For example, SRR18276513 contained no contigs >=1,000 bp and therefore no sequence capable of satisfying the initial 2,500-bp MetaBAT2 binning threshold.
 
-- completeness
-- contamination
-- genome quality
+To permit a transparent hands-on investigation of the binning stage, MetaBAT2 was repeated using the lowest primary contig threshold permitted by the Galaxy wrapper used in this exercise: **1,500 bp**, with the minimum small-contig setting reduced to **500 bp**. Other principal binning settings were retained.
 
-### Taxonomic classification
+No bins were recovered after the relaxed training-specific attempt.
 
-GTDB-Tk will be used to assign genome-based taxonomy to reconstructed MAGs using the Genome Taxonomy Database framework.
+Rather than progressively weakening additional parameters to force an output, Version 1.0 ends at this point and records the absence of bins as a legitimate result of the demonstration dataset and assembly characteristics.
 
-## Current Progress
+See [`docs/07_metabat2_binning_attempt.md`](docs/07_metabat2_binning_attempt.md) for the complete binning-stage documentation.
+
+## Interpretation and Scope
+
+A reproducible MAG-reconstruction workflow does not guarantee MAG recovery from every sequencing dataset.
+
+Genome binning depends strongly on the quantity, contiguity, coverage, and biological composition of the assembled sequence. Version 1.0 therefore demonstrates the computational workflow and its decision points while explicitly separating **successful execution of the workflow** from **successful recovery of MAGs**.
+
+No output from the Version 1.0 MetaBAT2 attempts is presented as a MAG.
+
+## Documentation
+
+Detailed stage-specific documentation is available in `docs/`:
+
+1. `01_data_acquisition.md` — SRA data acquisition
+2. `02_quality_control.md` — FastQC and MultiQC assessment
+3. `03_read_preprocessing.md` — Cutadapt preprocessing
+4. `04_bowtie2_mapping.md` — Bowtie2 host-mapping demonstration
+5. `05_metagenomic_assembly.md` — MEGAHIT assembly
+6. `06_assembly_quality.md` — QUAST assessment
+7. `07_metabat2_binning_attempt.md` — read recruitment, depth calculation, MetaBAT2 binning attempts, and Version 1.0 endpoint
+
+The `workflow/` directory contains the exported Galaxy workflow available for this project. Users should consult the written documentation together with the workflow file because Version 1.0 includes methodological decisions and later history operations that must be interpreted in context.
+
+## Reproducibility Principles
+
+This repository intentionally records:
+
+- tool versions where available;
+- input/output relationships;
+- sample-wise collection processing;
+- quality-control decisions;
+- assembly statistics relevant to downstream decisions;
+- standard/default settings used during the initial binning attempt;
+- training-specific parameter changes;
+- unsuccessful outputs and their interpretation.
+
+The purpose is to make the analysis auditable and adaptable rather than to imply that identical parameters are universally optimal for all metagenomic datasets.
+
+## Version 1.0 Status
 
 ### Completed
 
-- [x] Selection of SRA accessions
-- [x] Raw-read retrieval using FasterQ Dump in Galaxy
-- [x] Organization of paired-end sequencing reads
+- [x] SRA accession selection
+- [x] Raw-read retrieval with FasterQ Dump
+- [x] Paired-end read organization
 - [x] Initial FastQC assessment
-- [x] MultiQC summary
-- [x] Adapter identification
-- [x] Adapter and poly-A trimming using Cutadapt
-- [x] Post-trimming FastQC
-- [x] Post-trimming MultiQC evaluation
-- [x] Bowtie2 read-mapping demonstration
-- [x] Metagenomic assembly using MEGAHIT
-- [x] Assembly assessment using QUAST
+- [x] MultiQC aggregation
+- [x] Adapter/poly-A preprocessing with Cutadapt
+- [x] Post-trimming FastQC and MultiQC
+- [x] Bowtie2 host-mapping demonstration
+- [x] MEGAHIT metagenomic assembly
+- [x] QUAST assembly assessment
+- [x] Bowtie2 mapping of trimmed reads back to corresponding assemblies
+- [x] MetaBAT2 contig-depth calculation
+- [x] MetaBAT2 initial binning attempt
+- [x] MetaBAT2 relaxed training-specific binning attempt
+- [x] Documentation of the zero-bin outcome and assembly limitations
 
-### Next stages
+### Version 1.0 endpoint
 
-- [ ] Genome binning
-- [ ] Bin comparison and refinement
-- [ ] MAG quality assessment
-- [ ] Taxonomic classification
-- [ ] Construction of the final MAG catalogue
+**No candidate genome bins were recovered from the demonstration assemblies. Consequently, DAS Tool integration, CheckM/CheckM2 MAG-quality assessment, GTDB-Tk classification, and construction of a final MAG catalogue were not performed in Version 1.0.**
+
+This is intentional: those analyses require candidate genome bins, and Version 1.0 does not claim outputs that were not produced.
+
+## Version 2.0 Roadmap
+
+Version 2.0 will continue the project using data suitable for hands-on demonstration of genome-resolved reconstruction.
+
+The planned architecture is:
+
+```text
+Quality-controlled metagenomic data
+              |
+              v
+          Assembly
+              |
+      +-------+-------+
+      |       |       |
+      v       v       v
+  MetaBAT2  MaxBin2  CONCOCT
+      |       |       |
+      +-------+-------+
+              |
+              v
+           DAS Tool
+     bin integration/refinement
+              |
+              v
+         Refined bins
+              |
+              v
+       CheckM / CheckM2
+completeness and contamination
+              |
+              v
+           GTDB-Tk
+     taxonomic classification
+              |
+              v
+       Final MAG catalogue
+```
+
+Version 2.0 will preserve the distinction between raw binner outputs, DAS Tool-refined bins, quality-assessed MAGs, and taxonomically classified genomes.
 
 ## Repository Organization
 
-The repository is being organized to contain:
-
-- `data/` — dataset information and accession metadata
+- `data/` — accession and dataset information
 - `docs/` — detailed documentation of individual analysis stages
-- workflow documentation — Galaxy workflow provenance and tool configuration
-- quality-control documentation
-- assembly and downstream MAG reconstruction results
+- `workflow/` — exported Galaxy workflow and workflow documentation
 
-Additional directories and documentation will be added as the project progresses.
+## Release and Citation
 
-## Reproducibility
+This repository is being finalized as **Version 1.0** for archival release.
 
-A Galaxy workflow has been exported from the analysis to preserve the computational structure of the implemented workflow.
+After the Version 1.0 GitHub release is deposited in Zenodo, the version-specific DOI and archival citation should be added here.
 
-The exported workflow records the relationships between the major tools used during read retrieval, quality assessment, preprocessing, read mapping, metagenomic assembly, and assembly assessment.
+Until the DOI is assigned, the repository may be cited as:
 
-Detailed tool parameters, outputs, and methodological decisions will be documented progressively in this repository.
-
-## Project Status
-
-🚧 **Work in progress**
-
-The workflow currently extends from raw-read retrieval through metagenomic assembly and assembly assessment.
-
-Genome binning, bin refinement, MAG quality assessment, and taxonomic classification constitute the next stages of the project.
-
-The repository will continue to be updated as each stage is completed.
+Shokunbi, A. O. (2026). *Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration* [GitHub repository].
 
 ## Author
 
 **Aminat Olamide Shokunbi**
 
 PhD researcher working with metagenomic, bioinformatic, and genome-resolved approaches for the investigation of microbial communities and their functional potential.
-
-## Citation
-
-This repository is currently under active development.
-
-For the current GitHub version, please cite:
-
-Shokunbi, A. O. (2026). *Reconstruction of Metagenome-Assembled Genomes from Raw Reads Using Galaxy* [GitHub repository]. GitHub.
-
-A versioned archival citation and DOI will be provided following deposition of a stable release in Zenodo.
