@@ -82,6 +82,17 @@ The host-screening experiment is included to document why human-host removal was
 
 ## MEGAHIT assembly execution (7 October 2026)
 
-Galaxy Australia showed successful (green/OK) completion of MEGAHIT 1.2.9 (Galaxy wrapper 1.2.9+galaxy2) for the SRR25158482 paired-end collection. The output history contained one FASTA assembly dataset and one text log dataset. The log was approximately 1 MB and contained 8,506 lines. The run used individual assembly mode, rather than merging separate paired-end samples. Earlier parameter screenshots showed minimum multiplicity 2, k-mer list 21,29,39,59,79,99,119,141, and minimum output contig length 200 bp; the final executed settings should be cross-checked against the Galaxy job details. The log was generated successfully. Assembly metrics (total assembled bases, contig count, N50, largest contig, and contig length distribution) have not yet been evaluated; successful tool execution must not be described as successful MAG recovery.
+Galaxy Australia showed successful (green/OK) completion of MEGAHIT 1.2.9 (Galaxy wrapper 1.2.9+galaxy2) for the SRR25158482 paired-end collection. The output history contained one FASTA assembly dataset and one text log dataset. The log was approximately 1 MB and contained 8,506 lines. The run used individual assembly mode, rather than merging separate paired-end samples. Earlier parameter screenshots showed minimum multiplicity 2, k-mer list 21,29,39,59,79,99,119,141, and minimum output contig length 200 bp; the final executed settings should be cross-checked against the Galaxy job details. The log was generated successfully. The Galaxy job details and log now confirm the executed parameters and initial assembly metrics. Successful execution does not establish MAG recovery.
+
+### Verified MEGAHIT assembly results (8 October 2026)
+
+- Input: SRR25158482 paired-end reads; 144,105,568 reads (72,052,784 pairs), maximum read length 150 bp.
+- Software: MEGAHIT 1.2.9, Galaxy wrapper 1.2.9+galaxy2; paired collection assembled individually.
+- Parameters: minimum (k+1)-mer multiplicity 2; k-mer sizes 21,29,39,59,79,99,119,141; bubble level 2; merge level 20,0.95; prune level 2; prune depth 2; disconnect ratio 0.1; low-local ratio 0.2; 5 cleaning rounds; minimum output contig length 200 bp. Local assembly and mercy k-mers were enabled; intermediate contigs were not returned; logging enabled.
+- Output: `final.contigs.fa` (FASTA, ~1.2 GB), **1,993,724 contigs**, **1,150,097,002 assembled bp**, minimum **200 bp**, maximum **62,007 bp**, mean **576 bp**, **N50 586 bp**.
+- Status: `ALL DONE`; exit code 0. Galaxy wall-clock runtime 25 h 34 min; 16 allocated CPU cores; peak memory usage 120 GiB.
+- Interpretation: the assembly is highly fragmented, limiting confidence in downstream genome binning. Further evaluation using QUAST and contig-length filtering is planned, but is not yet completed. The original unfiltered assembly will be retained.
+- [Galaxy job](https://usegalaxy.org.au/?job_id=a6e389a98c2d167801d1552da0ad0572).
+
 
 Reference: Li, D., Liu, C.-M., Luo, R., Sadakane, K., & Lam, T.-W. (2015). MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. *Bioinformatics*, 31(10), 1674–1676. https://doi.org/10.1093/bioinformatics/btv033
