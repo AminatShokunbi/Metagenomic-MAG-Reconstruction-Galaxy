@@ -65,7 +65,7 @@ Host screening is retained in the workflow documentation as a **dataset-dependen
 - [x] Raw-read FastQC
 - [x] Human-host contamination assessment against hg38
 - [x] Evidence-based decision not to perform host depletion for SRR25158482
-- [ ] MEGAHIT metagenomic assembly
+- [x] MEGAHIT metagenomic assembly
 - [ ] Assembly quality assessment
 - [ ] Read recruitment and coverage estimation
 - [ ] MetaBAT2 binning
@@ -79,3 +79,9 @@ Host screening is retained in the workflow documentation as a **dataset-dependen
 ## Interpretation
 
 The host-screening experiment is included to document why human-host removal was not carried forward for this dataset. It should not be generalized to all metagenomic datasets. Host filtering should be selected according to sample provenance, study design, relevant host genome availability, and empirical screening results.
+
+## MEGAHIT assembly execution (7 October 2026)
+
+Galaxy Australia showed successful (green/OK) completion of MEGAHIT 1.2.9 (Galaxy wrapper 1.2.9+galaxy2) for the SRR25158482 paired-end collection. The output history contained one FASTA assembly dataset and one text log dataset. The log was approximately 1 MB and contained 8,506 lines. The run used individual assembly mode, rather than merging separate paired-end samples. Earlier parameter screenshots showed minimum multiplicity 2, k-mer list 21,29,39,59,79,99,119,141, and minimum output contig length 200 bp; the final executed settings should be cross-checked against the Galaxy job details. The log was generated successfully. Assembly metrics (total assembled bases, contig count, N50, largest contig, and contig length distribution) have not yet been evaluated; successful tool execution must not be described as successful MAG recovery.
+
+Reference: Li, D., Liu, C.-M., Luo, R., Sadakane, K., & Lam, T.-W. (2015). MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. *Bioinformatics*, 31(10), 1674–1676. https://doi.org/10.1093/bioinformatics/btv033
