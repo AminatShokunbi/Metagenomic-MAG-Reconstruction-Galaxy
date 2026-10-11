@@ -8,7 +8,7 @@ This repository documents a reproducible, Galaxy-based workflow for progressing 
 
 **Version 1.0 is a stable training and reproducibility release. It does not claim successful recovery of metagenome-assembled genomes (MAGs) from the six demonstration datasets.** Instead, it documents both the implemented computational procedure and the data-dependent limitation encountered when highly fragmented assemblies did not support genome-bin recovery with MetaBAT2.
 
-**Version 2.0 is now in progress:** sample SRR25158482 has produced **23 candidate bins with MetaBAT2 and 23 candidate bins with MaxBin2**. CONCOCT input preparation is underway; DAS Tool integration and independent genome-quality assessment are pending. See [Version 2.0 analysis log](docs/version2_assembly_to_metabat2.md). The Version 1.0 archived release and its zero-bin outcome remain unchanged.
+**Version 2.0 is now in progress:** sample SRR25158482 has produced **23 candidate bins with MetaBAT2 and 23 candidate bins with MaxBin2**. CONCOCT has now produced **53 candidate genome-bin FASTA datasets**; DAS Tool integration and independent genome-quality assessment are pending. See [Version 2.0 analysis log](docs/version2_assembly_to_metabat2.md) and [CONCOCT reproducibility record](docs/version2_concoct_binning.md). The Version 1.0 archived release and its zero-bin outcome remain unchanged.
 
 A subsequent **Version 2.0** was planned to extend the workflow through multi-binner genome reconstruction, DAS Tool integration, MAG quality assessment with CheckM/CheckM2, and taxonomic classification with GTDB-Tk using a dataset suitable for demonstrating those stages.
 
@@ -214,7 +214,7 @@ This is intentional: those analyses require candidate genome bins, and Version 1
 
 ## Version 2.0 Progress and Roadmap
 
-**Update — 11 October 2026:** Version 2.0 is actively being run in Galaxy Australia using SRR25158482. MEGAHIT, QUAST, contig filtering, Bowtie2 read recruitment and depth calculation are complete. **MetaBAT2 recovered 23 candidate bins and MaxBin2 independently reported 23 candidate bins** (not yet validated MAGs). MaxBin2's internal completeness estimates range 12.1–80.4%; these are not independent CheckM2 estimates. CONCOCT requires compatible coverage and sequence inputs, currently being prepared. DAS Tool, CheckM2, and GTDB-Tk remain pending. The complete results, methodological cautions, and references are recorded in [`docs/version2_assembly_to_metabat2.md`](docs/version2_assembly_to_metabat2.md).
+**Update — 11 October 2026:** Version 2.0 is actively being run in Galaxy Australia using SRR25158482. MEGAHIT, QUAST, contig filtering, Bowtie2 read recruitment and depth calculation are complete. **MetaBAT2 recovered 23 candidate bins and MaxBin2 independently reported 23 candidate bins** (not yet validated MAGs). MaxBin2's internal completeness estimates range 12.1–80.4%; these are not independent CheckM2 estimates. CONCOCT completed using fragment-level coverage and composition, followed by consensus merging and extraction of **53 candidate bins**. DAS Tool, CheckM2, and GTDB-Tk remain pending. The assembly and earlier binning results are recorded in [`docs/version2_assembly_to_metabat2.md`](docs/version2_assembly_to_metabat2.md); exact CONCOCT inputs, settings, intermediate datasets, and outputs are recorded in [`docs/version2_concoct_binning.md`](docs/version2_concoct_binning.md).
 
 The historical roadmap follows below.
 
