@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.0.0 — work in progress] — 2026-10-10
+
+- Began independent Version 2.0 analysis using SRA SRR25158482 on Galaxy Australia.
+- Recorded MEGAHIT assembly and QUAST results, ≥1,500-bp contig filtering, Bowtie2 read-to-contig mapping, and MetaBAT2 depth calculation.
+- Documented **23 candidate MetaBAT2 genome bins**, explicitly not yet validated MAGs.
+- Added stage-specific reproducibility notes and references in [docs/version2_assembly_to_metabat2.md](docs/version2_assembly_to_metabat2.md).
+- MaxBin2 configuration reviewed; MaxBin2 execution, CONCOCT, DAS Tool, CheckM2, and GTDB-Tk remain pending.
+- Version 1.0 historical results and releases remain unchanged. No new Zenodo DOI or Version 2.0 release is claimed.
+
 ## [1.0.2] - 2026-10-04
 
 ### Added
