@@ -1,6 +1,6 @@
 # Version 2.0 — SRR25158482: assembly and multi-binner reconstruction (work in progress)
 
-**Status (11 October 2026):** MetaBAT2 and MaxBin2 each produced **23 candidate genome bins**. CONCOCT input preparation is in progress. DAS Tool, CheckM2, and GTDB-Tk remain pending. This is a running analysis log, **not** a finalized v2.0 release or an exported executable workflow.
+**Status (11 October 2026):** MetaBAT2 and MaxBin2 each produced **23 candidate genome bins**. CONCOCT completed with **53 extracted candidate genome-bin FASTA datasets**. DAS Tool, CheckM2, and GTDB-Tk remain pending. This is a running analysis log, **not** a finalized v2.0 release or an exported executable workflow.
 
 ## Scope and dataset
 
@@ -98,15 +98,11 @@ The MaxBin2 summary reports **23 candidate bins**, with genome sizes ranging fro
 
 Neither identical bin counts across MetaBAT2 and MaxBin2 nor MaxBin2's internal completeness estimates establish that the two algorithms recovered identical genomes or that any bin is independently validated. Genome size alone (e.g., 9.33 Mb for out.001) is not evidence of contamination.
 
-## CONCOCT — input preparation pending
+## CONCOCT — completed: 53 candidate bins
 
-Galaxy **CONCOCT 1.1.0+galaxy3** was opened, but the two required inputs could not yet be selected:
-- **Coverage file** (`--coverage_file`): a tabular **contig × sample** average-coverage matrix, typically with contig identifiers and numeric per-sample coverage.
-- **Composition file** (`--composition_file`): sequences in **FASTA** format with identifiers corresponding exactly to coverage rows.
+CONCOCT **1.1.0+galaxy3** was completed on the same SRR25158482 filtered assembly and read-to-contig BAM. The fully documented procedure, exact settings, Galaxy dataset IDs, intermediate files, and cautions are available in **[the CONCOCT reproducibility record](version2_concoct_binning.md)**.
 
-The tool's selector displayed **"No datasets with tabular elements available"** and **"No datasets with fasta or fasta.gz elements available"**. This likely concerns input *collection element types/selector compatibility*, rather than proof that the history lacks those files; the history includes a filtered FASTA and depth-derived tables. Review whether selecting the **individual FASTA dataset 22** instead of a parent collection exposes the input. A CONCOCT-compatible coverage table must be prepared, ensuring column names/contig IDs and coverage values are correct. A MetaBAT2 mean-and-variance matrix is **not directly** the CONCOCT matrix; its per-sample coverage column must be extracted, not its variance column. Standard CONCOCT workflows may cut long contigs into parts before coverage calculation; if doing so, both coverage and composition must use matching **fragment IDs**. Since this is one sample, differential cross-sample coverage cannot be exploited; that limitation should be stated.
-
-**Do not report CONCOCT as executed or infer chosen numerical parameters until the job is submitted and inspected.**
+The sequence of operations was: filtered original contigs **21/22** → cut into **10,000-bp fragments** (FASTA **87/89**, BED **88/90**) → fragment coverage from Bowtie2 BAM **23/25** (coverage **91/92**) → CONCOCT clustering (clusters **93/96**, maximum **400** clusters, k=**4**, seed **42**, **500** iterations, PCA variance **90%**) → merge to original contigs (**99/100**) → extract bin FASTAs using original filtered contigs and merged assignments. The final extraction produced **53 candidate bins**, including a very small two-sequence cluster (dataset **102**). These are not yet quality-assessed MAGs.
 
 ## Remaining planned workflow
 
@@ -117,7 +113,7 @@ SRR25158482 paired-end reads
    -> Bowtie2 read-to-contig alignment -> depth estimates
    -> MetaBAT2 [23 candidate bins]
    -> MaxBin2 [23 candidate bins]
-   -> CONCOCT [inputs pending]
+   -> CONCOCT [53 candidate bins extracted]
    -> DAS Tool: integrate nonredundant bin assignments [pending]
    -> CheckM2: estimate completeness / contamination [pending]
    -> GTDB-Tk: classify quality-assessed bins [pending]
@@ -133,7 +129,7 @@ DAS Tool needs consistent contig IDs and contig-to-bin assignments for each binn
 4. Kang, D. D., Li, F., Kirton, E., Thomas, A., Egan, R., An, H., & Wang, Z. (2019). MetaBAT 2: an adaptive binning algorithm for robust and efficient genome reconstruction from metagenome assemblies. *PeerJ*, 7, e7359. https://doi.org/10.7717/peerj.7359
 5. Wu, Y.-W., Simmons, B. A., & Singer, S. W. (2016 [online 2015]). MaxBin 2.0: an automated binning algorithm to recover genomes from multiple metagenomic datasets. *Bioinformatics*, 32(4), 605–607. https://doi.org/10.1093/bioinformatics/btv638 (**used in Version 2.0**).
 
-For platform, SRA Toolkit, FastQC, MultiQC, and Cutadapt citations, see [../CITATIONS.md](../CITATIONS.md). 6. Alneberg, J., Bjarnason, B. S., de Bruijn, I., Schirmer, M., Quick, J., Ijaz, U. Z., Lahti, L., Loman, N. J., Andersson, A. F., & Quince, C. (2014). Binning metagenomic contigs by coverage and composition. *Nature Methods*, 11(11), 1144–1146. https://doi.org/10.1038/nmeth.3103 (**CONCOCT planned; not yet run**).
+For platform, SRA Toolkit, FastQC, MultiQC, and Cutadapt citations, see [../CITATIONS.md](../CITATIONS.md). 6. Alneberg, J., Bjarnason, B. S., de Bruijn, I., Schirmer, M., Quick, J., Ijaz, U. Z., Lahti, L., Loman, N. J., Andersson, A. F., & Quince, C. (2014). Binning metagenomic contigs by coverage and composition. *Nature Methods*, 11(11), 1144–1146. https://doi.org/10.1038/nmeth.3103 (**CONCOCT executed in Version 2.0**).
 
 Add references for DAS Tool, CheckM2 and GTDB-Tk when those methods are implemented.
 
