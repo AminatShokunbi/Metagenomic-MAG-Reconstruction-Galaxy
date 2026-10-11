@@ -27,6 +27,39 @@ The QUAST run included reference-based comparisons; because reference genomes re
 
 The successful Galaxy depth job used `jgi_summarize_bam_contig_depths` with `--percentIdentity 97 --minMapQual 0 --weightMapQual 0 --maxEdgeBases 75 --shredLength 16000 --shredDepth 5 --minContigLength 1 --minContigDepth 0`. Job completed with exit code 0, ~9-minute wall time, ~7.7 GiB peak memory. The depth matrix columns are `contigName`, `contigLen`, `totalAvgDepth`, sample mean depth, and sample depth variance. The coverage calculation used the original assembly so the depth matrix includes contigs shorter than the filtered binning input.
 
+## Coverage-depth and abundance-table preparation (Galaxy)
+
+This section distinguishes the **MetaBAT2 depth matrix** from the **MaxBin2 abundance table**. Both originate from read mapping to the assembled contigs, but their required formats differ.
+
+### A. MetaBAT2 depth matrix — completed
+
+1. Map the sample's paired reads back to the **original MEGAHIT assembly** with Bowtie2. This is distinct from the optional hg38 host-screening step.
+2. Supply the coordinate-sorted read-to-contig BAM to Galaxy **Calculate contig depths for MetaBAT2** (`jgi_summarize_bam_contig_depths`).
+3. Retain the resulting tabular matrix (collection **27**, individual depth file **28**), whose columns are:
+
+   ```text
+   contigName    contigLen    totalAvgDepth    <sample>    <sample>-var
+   ```
+
+4. Run MetaBAT2 using the filtered FASTA (collection **21** / individual **22**) and this **complete five-column matrix** as `--abdFile`. Do **not** put the same matrix into the separate `--cvExt` input.
+
+The original assembly used to calculate depths contains shorter contigs than the filtered FASTA. That is acceptable if contig IDs are unchanged and coverage rows match the retained contigs.
+
+### B. MaxBin2 abundance table — completed, format verification outstanding
+
+1. The first attempt to supply paired reads directly to MaxBin2 failed with a Galaxy mapping error: **two read elements** against **one contig element**.
+2. Instead, start with the MetaBAT2 depth matrix and use Galaxy **Cut columns from a table** to select `c1,c3`, corresponding to `contigName` and `totalAvgDepth`. This produces a two-column contig-abundance table:
+
+   ```text
+   <contig_ID>    <mean_depth>
+   ```
+
+3. The MaxBin2 input format expects **no header**. Galaxy's **Remove beginning of a file** was attempted to remove the first line; a **502 gateway error** occurred during collection processing. An individual tabular dataset is preferable for removing the header. **The successful run's exact header state remains unverified**, so the GitHub record must not imply that header removal succeeded.
+4. The user-supplied successful MaxBin2 summary identifies input collection **21** and abundance collection **53**; another accepted job submission referenced individual datasets **22** and **54**. Confirm the actual job provenance and log before describing the precise abundance file as final.
+5. MaxBin2 uses the derived two-column table as its **Abundance file** input, not the five-column MetaBAT2 matrix. The 23-bin MaxBin2 summary was obtained after switching to this input strategy.
+
+**Reproducibility checks before release:** confirm the actual first row of the abundance file, numeric depth values, no accidental header treated as a contig, exact job IDs and parameter values, and matching contig identifiers. Do not invent an abundance file size or claim all input parsing was successful without inspecting the log.
+
 ### MetaBAT2 caveats
 
 MetaBAT2 used the filtered contig FASTA and the mean-plus-variance depth table (the `--abdFile` input, **not** the separate `--cvExt` field). The working threshold was 1,500 bp. **Verify exact values of all advanced MetaBAT2 parameters from its completed Galaxy job details before presenting them as executed settings.** The 23 outputs are *candidate genome bins*, not yet quality-assessed MAGs. A single sample does not supply cross-sample differential coverage. Low read recruitment and severe assembly fragmentation may constrain completeness and bin purity.
