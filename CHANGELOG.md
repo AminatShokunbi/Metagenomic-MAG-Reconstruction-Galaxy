@@ -9,7 +9,7 @@ All notable changes to this project are documented in this file.
 - Documented **23 candidate MetaBAT2 genome bins**, explicitly not yet validated MAGs.
 - Added stage-specific reproducibility notes and references in [docs/version2_assembly_to_metabat2.md](docs/version2_assembly_to_metabat2.md).
 - MaxBin2 v2.2.7+galaxy6 produced **23 candidate bins** from filtered contigs and a derived abundance table. Internal completeness estimates were **12.1–80.4%**; 10 bins met the 50% threshold based on MaxBin2 estimates only. Dataset provenance and abundance-header handling require job-log confirmation.
-- CONCOCT v1.1.0+galaxy3 parameter form inspected; coverage and composition input-format/collection-selection issues identified; **CONCOCT not yet executed**.
+- Completed CONCOCT **1.1.0+galaxy3**: 10,000-bp contig fragmentation, fragment-level BAM coverage generation, clustering (max 400; k=4; 1,000-bp minimum; seed 42; 500 iterations; 90% PCA variance), merging fragment assignments, and extracting **53 candidate genome-bin FASTA datasets**. Added the full reproducibility record in [docs/version2_concoct_binning.md](docs/version2_concoct_binning.md). These are not quality-validated MAGs.
 - DAS Tool, CheckM2, and GTDB-Tk remain pending.
 - Version 1.0 historical results and releases remain unchanged. No new Zenodo DOI or Version 2.0 release is claimed.
 
