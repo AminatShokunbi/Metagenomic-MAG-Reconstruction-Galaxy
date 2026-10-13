@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+### Update — 2026-10-13 (beginner reproducibility review)
+
+- Added [step-by-step Galaxy MAG reconstruction guide](docs/START_HERE_MAG_RECONSTRUCTION.md) with exact tools, key settings, required data, expected results and output checks for SRR25158482.
+- Made the guide the primary README entry point; designated GTDB-Tk as optional.
+- Audited the exported Version 2.0 workflow: 39 steps; CheckM2 not connected to DAS Tool; corrected MaxBin2 TSV remains an external required input.
+- Distinguished the completed **manual** reconstruction from a **not-yet-validated one-click** automated workflow. A fully portable rerun still requires corrected input files and workflow validation.
+- Kept previous troubleshooting documentation outside the beginner tutorial.
+
 ### Update — 2026-10-13 (three-binner DAS Tool + CheckM2 completed)
 
 - Completed three-binner DAS Tool 1.1.7+galaxy1 using filtered contigs #22, corrected MaxBin2 table #401, MetaBAT2 #280 and CONCOCT #158.
