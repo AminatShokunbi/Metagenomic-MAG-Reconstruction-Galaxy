@@ -1,6 +1,6 @@
 # Version 2.0 — DAS Tool integration and MaxBin2 assignment troubleshooting (13 October 2026)
 
-**Sample:** SRR25158482. **Platform:** Galaxy Australia, history “MAG Recovery version 2,0”. **Status:** Two-binner DAS Tool run completed; three-binner integration with corrected MaxBin2 assignments is **not yet confirmed**. CheckM2 and GTDB-Tk remain pending.
+**Sample:** SRR25158482. **Platform:** Galaxy Australia, history “MAG Recovery version 2,0”. **Status as originally recorded:** Two-binner DAS Tool completed; three-binner integration was pending at this stage. **Later on 13 October, three-binner DAS Tool and CheckM2 completed**; see [subsequent results](version2_dastool_checkm2_results.md). GTDB-Tk remains pending.
 
 ## Inputs and upstream progress
 
@@ -38,7 +38,7 @@ k141_1640297	MaxBin2_003
 
 The examples above illustrate the required format and are not an independently revalidated complete assignment list. A corrected local artifact was supplied in the conversation as `MaxBin2_contigs2bin_corrected.tsv`, with a reported **23 bins**, **31,240 contig assignments**, and **zero duplicate contig IDs**. **These counts should be rechecked against the uploaded TSV and original MaxBin2 collection before publication as audited statistics.** The artifact is not automatically present in the GitHub repository or Galaxy history.
 
-**Next step:** Upload the corrected headerless two-column TSV to Galaxy; inspect a few rows across bin transitions (001/002/003/023); rerun DAS Tool with **#22 original filtered contigs**, the validated **MetaBAT2** and **CONCOCT** mappings, and the corrected **MaxBin2** mapping. Verify the three labels, input provenance, summary, log, and exported FASTAs. Then run CheckM2 and GTDB-Tk on the resulting candidate bins.
+**Subsequent outcome:** The corrected TSV was uploaded as **#401** and successfully used in three-binner DAS Tool with **#22**, **#280**, and **#158**. DAS Tool produced six selected bins; CheckM2 then evaluated all six (quality report **#417**). Full provenance, results and outstanding issues are in [the completed DAS Tool and CheckM2 record](version2_dastool_checkm2_results.md). GTDB-Tk remains pending.
 
 ## Interpretation and limitations
 
