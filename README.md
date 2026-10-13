@@ -15,6 +15,16 @@ This repository documents a reproducible, Galaxy-based workflow for progressing 
 
 A subsequent **Version 2.0** was planned to extend the workflow through multi-binner genome reconstruction, DAS Tool integration, MAG quality assessment with CheckM/CheckM2, and taxonomic classification with GTDB-Tk using a dataset suitable for demonstrating those stages.
 
+## Start here: Reproduce MAG reconstruction in Galaxy
+
+**New to Galaxy?** Follow the [step-by-step Version 2.0 MAG reconstruction guide](docs/START_HERE_MAG_RECONSTRUCTION.md). It provides the exact Galaxy tools, recorded settings, required inputs, checks after each stage, and expected outputs for **SRR25158482**.
+
+**Scope:** raw paired-end reads → MEGAHIT assembly → read mapping and contig depth → MetaBAT2, MaxBin2, and CONCOCT binning → DAS Tool integration → CheckM2 genome-quality assessment. **GTDB-Tk is optional** and not required to demonstrate reconstruction.
+
+**Reproduced results:** 23 MetaBAT2 bins, 23 MaxBin2 bins, 53 CONCOCT bin FASTAs, **six DAS Tool-selected candidate bins**, and CheckM2 completeness **49.99–93.43%** and contamination **0.65–13.28%**. The full table is in [DAS Tool and CheckM2 results](docs/version2_dastool_checkm2_results.md). These are candidate bins with quality estimates, **not six high-quality MAGs**.
+
+**Reproducibility status:** The documented **manual workflow** is supported by the completed Galaxy history. The exported Version 2.0 workflow snapshot has not been validated as a one-click run: CheckM2 is disconnected and DAS Tool requires the corrected MaxBin2 TSV as an external input. See [workflow audit](docs/version2_exported_workflow_audit.md). We will publish a validated automated workflow only after a successful end-to-end test.
+
 ## Objective
 
 The broader objective of this project is to independently perform and document a complete bioinformatic workflow from raw metagenomic sequencing reads to reconstructed, quality-assessed, and taxonomically classified MAGs using Galaxy.
