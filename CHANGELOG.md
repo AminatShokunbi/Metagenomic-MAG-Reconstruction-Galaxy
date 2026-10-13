@@ -2,7 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
-### Update — 2026-10-13
+### Update — 2026-10-13 (three-binner DAS Tool + CheckM2 completed)
+
+- Completed three-binner DAS Tool 1.1.7+galaxy1 using filtered contigs #22, corrected MaxBin2 table #401, MetaBAT2 #280 and CONCOCT #158.
+- Recorded DAS Tool outputs #406 (six-bin summary), #407 (6,281 contig assignments), #408 (log), and FASTA bins #409–#414. Duplicate input labels were automatically renamed; recommend explicit labels on rerun.
+- Completed CheckM2 1.1.0+galaxy1 for all six FASTA bins; quality report #417: completeness 49.99–93.43%, contamination 0.65–13.28%.
+- Four bins meet ≥50% completeness and <10% contamination; three meet ≥50% and <5% contamination. No formal MIMAG designation or GTDB-Tk classification is yet claimed.
+- Added [complete DAS Tool and CheckM2 results](docs/version2_dastool_checkm2_results.md). GTDB-Tk and final MAG catalogue pending.
+- Version 1.0 release and Zenodo DOIs remain unchanged.
+
+### Update — 2026-10-13 (earlier troubleshooting snapshot)
 
 - Documented successful two-binner DAS Tool execution and output #298 (5,105 contig-to-bin assignments); final bin count/quality not yet verified.
 - Recorded input-format problems, failed Galaxy column expression, incorrect constant `MaxBin2_001` labeling across 23 collection elements, and attempted GUI remedies.
