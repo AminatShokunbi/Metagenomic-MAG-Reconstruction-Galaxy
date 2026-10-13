@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+### Update — 2026-10-13
+
+- Documented successful two-binner DAS Tool execution and output #298 (5,105 contig-to-bin assignments); final bin count/quality not yet verified.
+- Recorded input-format problems, failed Galaxy column expression, incorrect constant `MaxBin2_001` labeling across 23 collection elements, and attempted GUI remedies.
+- Documented the corrected headerless MaxBin2 contig-to-bin TSV strategy and the pending three-binner DAS Tool rerun.
+- Added [DAS Tool and MaxBin2 troubleshooting log](docs/version2_dastool_maxbin2_troubleshooting.md). CheckM2/GTDB-Tk remain pending.
+
 ## [2.0.0 — work in progress] — updated 2026-10-11
 
 - Began independent Version 2.0 analysis using SRA SRR25158482 on Galaxy Australia.
