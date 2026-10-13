@@ -10,6 +10,9 @@ This repository documents a reproducible, Galaxy-based workflow for progressing 
 
 **Version 2.0 is now in progress:** sample SRR25158482 has produced **23 candidate bins with MetaBAT2 and 23 candidate bins with MaxBin2**. CONCOCT has now produced **53 candidate genome-bin FASTA datasets**; DAS Tool integration and independent genome-quality assessment are pending. See [Version 2.0 analysis log](docs/version2_assembly_to_metabat2.md) and [CONCOCT reproducibility record](docs/version2_concoct_binning.md). The Version 1.0 archived release and its zero-bin outcome remain unchanged.
 
+
+**13 October 2026 — DAS Tool troubleshooting:** A two-binner DAS Tool job completed and generated a 5,105-row contig-to-bin output (#298). MaxBin2's 23-bin collection required repair because all 23 tabular elements were incorrectly labeled `MaxBin2_001`; a corrected 23-bin TSV was prepared for upload. **Three-binner DAS Tool refinement is not yet confirmed.** See [DAS Tool and MaxBin2 troubleshooting](docs/version2_dastool_maxbin2_troubleshooting.md). CheckM2 and GTDB-Tk are still pending.
+
 A subsequent **Version 2.0** was planned to extend the workflow through multi-binner genome reconstruction, DAS Tool integration, MAG quality assessment with CheckM/CheckM2, and taxonomic classification with GTDB-Tk using a dataset suitable for demonstrating those stages.
 
 ## Objective
