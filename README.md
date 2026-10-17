@@ -2,38 +2,29 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23144501.svg)](https://doi.org/10.5281/zenodo.23144501)
 
-## Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration
+## Project outcomes — completed Version 2.0 MAG reconstruction
 
-This repository documents a reproducible, Galaxy-based workflow for progressing from public paired-end metagenomic sequencing reads through quality control, preprocessing, metagenomic assembly, assembly assessment, read recruitment, coverage estimation, and an initial genome-binning attempt.
+The project was developed in Galaxy Australia to demonstrate the recovery and quality assessment of genome bins from shotgun metagenomic sequencing reads. The initial Version 1.0 demonstration used six SRA datasets and did not recover bins at the attempted MetaBAT2 thresholds. **Version 2.0 subsequently recovered and assessed genome bins** from SRA accession **SRR25158482**. The Version 1.0 record and existing Zenodo DOI were preserved as a separate earlier release; no new Version 2.0 DOI was claimed.
 
-**Version 1.0 is a stable training and reproducibility release. It does not claim successful recovery of metagenome-assembled genomes (MAGs) from the six demonstration datasets.** Instead, it documents both the implemented computational procedure and the data-dependent limitation encountered when highly fragmented assemblies did not support genome-bin recovery with MetaBAT2.
+The Version 2.0 analysis assembled the reads using MEGAHIT, mapped reads back to the assembly for coverage estimation, and applied MetaBAT2, MaxBin2 and CONCOCT. The three prediction sets were integrated using DAS Tool, and the selected genome-bin FASTAs were assessed with CheckM2. The completed Galaxy history recorded **23 MetaBAT2 bins, 23 MaxBin2 bins, 53 CONCOCT candidate bin FASTAs, and six DAS Tool-selected bins**.
 
-**Version 2.0 is now in progress:** sample SRR25158482 has produced **23 candidate bins with MetaBAT2 and 23 candidate bins with MaxBin2**. CONCOCT produced **53 candidate genome-bin FASTA datasets**. **Three-binner DAS Tool integration is complete**, yielding six selected bins; **CheckM2 has assessed all six**. GTDB-Tk taxonomic classification remains pending. See [Version 2.0 analysis log](docs/version2_assembly_to_metabat2.md) and [CONCOCT reproducibility record](docs/version2_concoct_binning.md). The Version 1.0 archived release and its zero-bin outcome remain unchanged.
+CheckM2 estimated completeness of **49.99–93.43%** and contamination of **0.65–13.28%** among the six selected bins. Four bins satisfied the numerical screen of ≥50% completeness and <10% contamination, and three satisfied ≥50% completeness and <5% contamination. These observations supported successful reconstruction of quality-assessed **candidate MAGs**, not a claim that all six met high-quality MIMAG standards. [The per-bin report](docs/version2_dastool_checkm2_results.md) documented the individual estimates.
 
+The successful DAS Tool analysis used a separately prepared, headerless two-column **MaxBin2 contig-to-bin mapping** because the necessary per-bin labels had not been generated correctly through the available Galaxy conversion operations. The corrected mapping was uploaded as a Galaxy input and was also supplied in this repository as [`MaxBin2_contigs2bin_corrected.tsv`](MaxBin2_contigs2bin_corrected.tsv). This documented preprocessing step did **not** invalidate the successful analysis. The mapping remained assembly-specific, so another sequencing dataset required a corresponding new mapping.
 
-**13 October 2026 — DAS Tool troubleshooting:** A two-binner DAS Tool job completed and generated a 5,105-row contig-to-bin output (#298). MaxBin2's 23-bin collection required repair because all 23 tabular elements were incorrectly labeled `MaxBin2_001`; a corrected 23-bin TSV was prepared for upload. The corrected MaxBin2 table was subsequently used in a **successful three-binner DAS Tool run**. See [DAS Tool and MaxBin2 troubleshooting](docs/version2_dastool_maxbin2_troubleshooting.md) and [DAS Tool + CheckM2 results](docs/version2_dastool_checkm2_results.md). GTDB-Tk remains pending.
+### Reproducibility documentation
 
-A subsequent **Version 2.0** was planned to extend the workflow through multi-binner genome reconstruction, DAS Tool integration, MAG quality assessment with CheckM/CheckM2, and taxonomic classification with GTDB-Tk using a dataset suitable for demonstrating those stages.
-
-## Start here: Reproduce MAG reconstruction in Galaxy
-
-**New to Galaxy?** Follow the [step-by-step Version 2.0 MAG reconstruction guide](docs/START_HERE_MAG_RECONSTRUCTION.md). It provides the exact Galaxy tools, recorded settings, required inputs, checks after each stage, and expected outputs for **SRR25158482**.
-
-**Scope:** raw paired-end reads → MEGAHIT assembly → read mapping and contig depth → MetaBAT2, MaxBin2, and CONCOCT binning → DAS Tool integration → CheckM2 genome-quality assessment. **GTDB-Tk is optional** and not required to demonstrate reconstruction.
-
-**Reproduced results:** 23 MetaBAT2 bins, 23 MaxBin2 bins, 53 CONCOCT bin FASTAs, **six DAS Tool-selected candidate bins**, and CheckM2 completeness **49.99–93.43%** and contamination **0.65–13.28%**. The full table is in [DAS Tool and CheckM2 results](docs/version2_dastool_checkm2_results.md). These are candidate bins with quality estimates, **not six high-quality MAGs**.
-
-**Reproducibility status (17 October 2026):** The completed Galaxy history supports successful reconstruction and CheckM2 assessment of six candidate bins. In the latest exported Version 2.0 workflow (39 steps), the final DAS Tool `bins` output **is connected to CheckM2**. The corrected MaxBin2 two-column TSV remains an explicit external input, and this latest workflow has **not yet passed an end-to-end rerun**. This does not invalidate the original successful analysis; it limits claims of one-click automation for new datasets. Follow [reproduce SRR25158482 or adapt to another dataset](docs/VERSION2_REPRODUCE_OR_ADAPT.md).
+The [beginner's Galaxy reconstruction guide](docs/START_HERE_MAG_RECONSTRUCTION.md) documented the operational steps and recorded parameters. The [Version 2.0 reproduction and adaptation guide](docs/VERSION2_REPRODUCE_OR_ADAPT.md) distinguished reproduction of the SRR25158482 demonstration from application to other datasets. The latest exported workflow included the DAS Tool-to-CheckM2 connection, but a fresh complete execution of that export had **not yet been verified**. GTDB-Tk was treated as an optional downstream taxonomic extension, not a prerequisite for MAG reconstruction.
 
 ## Objective
 
-The broader objective of this project is to independently perform and document a complete bioinformatic workflow from raw metagenomic sequencing reads to reconstructed, quality-assessed, and taxonomically classified MAGs using Galaxy.
+The objective of this project was to reconstruct and quality-assess candidate metagenome-assembled genomes from shotgun sequencing reads using Galaxy. Taxonomic classification was considered an optional downstream extension.
 
 Version 1.0 establishes and documents the workflow through the first coverage-informed genome-binning attempt while preserving tool settings, intermediate operations, quality-control decisions, and unsuccessful outcomes required for reproducibility.
 
 ## Demonstration Dataset
 
-Six publicly available metagenomic sequencing datasets from the NCBI Sequence Read Archive (SRA) were used:
+The initial Version 1.0 demonstration used six publicly available metagenomic sequencing datasets from the NCBI Sequence Read Archive (SRA):
 
 - SRR18276513
 - SRR30026880
@@ -42,7 +33,7 @@ Six publicly available metagenomic sequencing datasets from the NCBI Sequence Re
 - SRR18276516
 - SRR18276520
 
-The datasets were processed as paired-end sequencing reads in Galaxy.
+These datasets were processed as paired-end sequencing reads in Galaxy. The successful Version 2.0 MAG reconstruction used a separate SRA accession, **SRR25158482**.
 
 ## Platform
 
