@@ -1,6 +1,14 @@
 # Changelog
 
-All notable changes to this project are documented in this file.
+All notable changes to this project were recorded in this file.
+
+### Update — 2026-10-17 (completed MAG reconstruction and reporting)
+
+- The README was revised to report the successful Version 2.0 reconstruction of six DAS Tool-selected genome bins and their CheckM2 quality assessment, while preserving the distinct Version 1.0 zero-bin result.
+- The reference list was expanded to include MaxBin2, CONCOCT, DAS Tool, CheckM2 and MIMAG reporting standards, with DOIs.
+- The corrected MaxBin2 two-column mapping was documented as a valid, assembly-specific external input rather than an invalidating limitation.
+- The latest workflow export was recorded as having DAS Tool connected to CheckM2; an independent complete rerun of the exported workflow had not yet been demonstrated.
+- GTDB-Tk was designated an optional extension, not a condition of completed MAG reconstruction. No new Version 2.0 release or DOI was claimed.
 
 ### Update — 2026-10-13 (beginner reproducibility review)
 
