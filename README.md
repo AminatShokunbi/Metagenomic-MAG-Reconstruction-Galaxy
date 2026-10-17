@@ -23,7 +23,7 @@ A subsequent **Version 2.0** was planned to extend the workflow through multi-bi
 
 **Reproduced results:** 23 MetaBAT2 bins, 23 MaxBin2 bins, 53 CONCOCT bin FASTAs, **six DAS Tool-selected candidate bins**, and CheckM2 completeness **49.99–93.43%** and contamination **0.65–13.28%**. The full table is in [DAS Tool and CheckM2 results](docs/version2_dastool_checkm2_results.md). These are candidate bins with quality estimates, **not six high-quality MAGs**.
 
-**Reproducibility status:** The documented **manual workflow** is supported by the completed Galaxy history. The exported Version 2.0 workflow snapshot has not been validated as a one-click run: CheckM2 is disconnected and DAS Tool requires the corrected MaxBin2 TSV as an external input. See [workflow audit](docs/version2_exported_workflow_audit.md). We will publish a validated automated workflow only after a successful end-to-end test.
+**Reproducibility status (17 October 2026):** The completed Galaxy history supports successful reconstruction and CheckM2 assessment of six candidate bins. In the latest exported Version 2.0 workflow (39 steps), the final DAS Tool `bins` output **is connected to CheckM2**. The corrected MaxBin2 two-column TSV remains an explicit external input, and this latest workflow has **not yet passed an end-to-end rerun**. This does not invalidate the original successful analysis; it limits claims of one-click automation for new datasets. Follow [reproduce SRR25158482 or adapt to another dataset](docs/VERSION2_REPRODUCE_OR_ADAPT.md).
 
 ## Objective
 
