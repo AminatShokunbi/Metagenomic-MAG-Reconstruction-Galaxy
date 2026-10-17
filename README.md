@@ -1,10 +1,12 @@
 # Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23144501.svg)](https://doi.org/10.5281/zenodo.23144501)
+[![Zenodo Version 2.0 DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23441178.svg)](https://doi.org/10.5281/zenodo.23441178)
+
+**Latest published release:** [Version 2.0 — MAG Recovery and Quality Assessment (Zenodo)](https://doi.org/10.5281/zenodo.23441178) · **All-versions DOI:** [10.5281/zenodo.23144501](https://doi.org/10.5281/zenodo.23144501)
 
 ## Project outcomes — completed Version 2.0 MAG reconstruction
 
-The project was developed in Galaxy Australia to demonstrate the recovery and quality assessment of genome bins from shotgun metagenomic sequencing reads. The initial Version 1.0 demonstration used six SRA datasets and did not recover bins at the attempted MetaBAT2 thresholds. **Version 2.0 subsequently recovered and assessed genome bins** from SRA accession **SRR25158482**. The Version 1.0 record and existing Zenodo DOI were preserved as a separate earlier release; no new Version 2.0 DOI was claimed.
+The project was developed in Galaxy Australia to demonstrate the recovery and quality assessment of genome bins from shotgun metagenomic sequencing reads. The initial Version 1.0 demonstration used six SRA datasets and did not recover bins at the attempted MetaBAT2 thresholds. **Version 2.0 subsequently recovered and assessed genome bins** from SRA accession **SRR25158482**. The earlier Version 1.0 releases were preserved. **Version 2.0 was published on Zenodo on 17 October 2026 with version-specific DOI [10.5281/zenodo.23441178](https://doi.org/10.5281/zenodo.23441178).**
 
 The Version 2.0 analysis assembled the reads using MEGAHIT, mapped reads back to the assembly for coverage estimation, and applied MetaBAT2, MaxBin2 and CONCOCT. The three prediction sets were integrated using DAS Tool, and the selected genome-bin FASTAs were assessed with CheckM2. The completed Galaxy history recorded **23 MetaBAT2 bins, 23 MaxBin2 bins, 53 CONCOCT candidate bin FASTAs, and six DAS Tool-selected bins**.
 
@@ -216,9 +218,9 @@ The purpose is to make the analysis auditable and adaptable rather than to imply
 
 This is intentional: those analyses require candidate genome bins, and Version 1.0 does not claim outputs that were not produced.
 
-## Version 2.0 Progress and Roadmap
+## Version 2.0 Completed Analysis and Historical Roadmap
 
-**Update — 11 October 2026:** Version 2.0 is actively being run in Galaxy Australia using SRR25158482. MEGAHIT, QUAST, contig filtering, Bowtie2 read recruitment and depth calculation are complete. **MetaBAT2 recovered 23 candidate bins and MaxBin2 independently reported 23 candidate bins** (not yet validated MAGs). MaxBin2's internal completeness estimates range 12.1–80.4%; these are not independent CheckM2 estimates. CONCOCT completed using fragment-level coverage and composition, followed by consensus merging and extraction of **53 candidate bins**. DAS Tool and CheckM2 are now complete (13 October 2026); GTDB-Tk remains pending. The assembly and earlier binning results are recorded in [`docs/version2_assembly_to_metabat2.md`](docs/version2_assembly_to_metabat2.md); exact CONCOCT inputs, settings, intermediate datasets, and outputs are recorded in [`docs/version2_concoct_binning.md`](docs/version2_concoct_binning.md).
+**Historical progress note — 11 October 2026:** Version 2.0 was being run in Galaxy Australia using SRR25158482. MEGAHIT, QUAST, contig filtering, Bowtie2 read recruitment and depth calculation are complete. **MetaBAT2 recovered 23 candidate bins and MaxBin2 independently reported 23 candidate bins** (not yet validated MAGs). MaxBin2's internal completeness estimates range 12.1–80.4%; these are not independent CheckM2 estimates. CONCOCT completed using fragment-level coverage and composition, followed by consensus merging and extraction of **53 candidate bins**. DAS Tool and CheckM2 are now complete (13 October 2026); GTDB-Tk remains pending. The assembly and earlier binning results are recorded in [`docs/version2_assembly_to_metabat2.md`](docs/version2_assembly_to_metabat2.md); exact CONCOCT inputs, settings, intermediate datasets, and outputs are recorded in [`docs/version2_concoct_binning.md`](docs/version2_concoct_binning.md).
 
 **Update — 13 October 2026: DAS Tool and CheckM2 completed.** DAS Tool (1.1.7+galaxy1) integrated corrected MaxBin2 table #401, MetaBAT2 table #280, and CONCOCT table #158 with filtered contigs #22. Six selected FASTA bins (#409–#414), contig-to-bin output #407 (6,281 assignments), and summary #406 were produced. CheckM2 (1.1.0+galaxy1) evaluated all six, yielding completeness **49.99–93.43%** and contamination **0.65–13.28%**. Four meet the numerical screen ≥50% completeness and <10% contamination; three meet ≥50% and <5%. These are screening thresholds, **not formal quality assignments**. See [full results and limitations](docs/version2_dastool_checkm2_results.md). GTDB-Tk and final catalogue are pending.\n\nThe historical roadmap follows below.
 
@@ -283,14 +285,17 @@ The repository contains `CITATION.cff`, `CITATIONS.md`, an MIT `LICENSE`, a chan
 
 ## Citation
 
-If you use this software project or its documentation generally, cite the Zenodo **project DOI (all versions)**:
+**For the completed Version 2.0 MAG reconstruction and quality assessment, cite:**
 
-**Shokunbi, Aminat Olamide. _Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 1.0 — Assembly, Coverage Estimation and Genome-Binning Demonstration_ [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23144501**
+Shokunbi, A. O. (2026). *Galaxy-Based MAG Reconstruction Workflow from Raw Metagenomic Reads: Version 2.0 — Recovery and Quality Assessment of Metagenome-Assembled Genomes* (Version 2.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23441178
 
-The project DOI represents the software across archived versions and resolves to the latest Zenodo version. When an analysis, manuscript, or report depends on a specific archived release, use that release's version-specific DOI instead.
+**For the software project across all archived versions, use the concept DOI:** https://doi.org/10.5281/zenodo.23144501
+
+The concept DOI resolves to the latest published version. The version-specific DOI identifies the exact archived Version 2.0 release. The exported workflow has not yet undergone an independent complete end-to-end rerun.
 
 ### Version-specific archived releases
 
+- **v2.0 (published 17 October 2026):** https://doi.org/10.5281/zenodo.23441178
 - **v1.0.1:** https://doi.org/10.5281/zenodo.23144502
 - **v1.0.2:** https://doi.org/10.5281/zenodo.23145661
 
