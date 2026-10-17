@@ -1,6 +1,6 @@
 # Version 2.0 — Three-binner DAS Tool integration and CheckM2 genome quality (13 October 2026)
 
-**Sample:** SRR25158482. **Galaxy:** Australia, history `MAG Recovery version 2,0`. **Status:** DAS Tool refinement and CheckM2 completed; GTDB-Tk classification pending. These are candidate genome bins, not yet a taxonomically classified final MAG catalogue.
+**Sample:** SRR25158482. **Galaxy:** Australia, history `MAG Recovery version 2,0`. **Status:** DAS Tool refinement and CheckM2 assessment were completed successfully. GTDB-Tk was optional and was not required to demonstrate MAG reconstruction. The six recovered genome bins were reported with their individual quality estimates; no formal high-quality MIMAG classification was inferred solely from CheckM2.
 
 ## Three-binner DAS Tool execution
 
@@ -61,13 +61,13 @@ DAS Tool summary reports #409 size 2,834,684 bp; #410 8,051,140 bp; #411 2,062,5
 
 The original 23 MaxBin2 FASTA-derived tabular datasets in Galaxy collection **#377** incorrectly all had the second column `MaxBin2_001`, which would collapse separate bins into a single prediction. Attempts using Galaxy column operations and collection rule builders did not fix the contents. The solution was to derive each row's second-column bin ID from the original collection element identifier `001`–`023`, concatenate a **headerless two-column TSV**, and upload it as **#401**. A previously supplied corrected file was reported as containing **31,240 assignments from 23 bins, zero duplicated contig IDs**; independently audit these figures before presenting them as verified dataset statistics. This corrected file was accepted by DAS Tool and contributed bin #409.
 
-## Remaining work
+## Scope and reproducibility
 
-1. Run **GTDB-Tk** classification on all six FASTA bins; record the Galaxy tool/database versions, taxonomic assignments, warnings, and confidence indicators.
-2. Examine contamination of #410 and #412, and potential refinement/reassessment; assess whether #409 is worth retaining for targeted analyses.
-3. Check full CheckM2 report, additional genome characteristics, and relevant rRNA/tRNA recovery before final MIMAG quality assignments.
-4. Preserve Galaxy history/exported workflow, exact input tables, and the corrected MaxBin2 mapping; document any new tool settings and reruns.
-5. Build a final quality-assessed, taxonomically annotated MAG catalogue. **Do not mark Version 2.0 released or assign a new DOI until an actual release is made.**
+The project objective was achieved at the level of **reconstruction and quality assessment of candidate genome bins**. The three-binner DAS Tool run completed and CheckM2 reported completeness and contamination for all six selected bins. GTDB-Tk taxonomic classification was an optional extension and was not presented as a missing prerequisite for reconstruction.
+
+The corrected MaxBin2 mapping was prepared outside Galaxy and supplied as a documented input after Galaxy-based conversion failed to preserve distinct bin identifiers. For the original assembly, this file enabled reproduction of the DAS Tool input; new assemblies required newly generated, matching mapping tables. The exported workflow had not yet been independently validated by a complete fresh run.
+
+The four bins satisfying ≥50% completeness and <10% contamination were reported as candidate MAGs meeting that numerical screening criterion, rather than as automatically qualifying for high-quality MIMAG status.
 
 ## References
 
