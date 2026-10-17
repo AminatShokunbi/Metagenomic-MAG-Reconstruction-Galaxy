@@ -1,8 +1,6 @@
 # Software Citations
 
-This file records citations for the software platform and bioinformatics tools implemented in Version 1.0 of the Galaxy-based MAG reconstruction workflow. These references complement the citation for the archived workflow itself.
-
-Tools planned for Version 2.0 but not implemented in Version 1.0 (including MaxBin2, CONCOCT, DAS Tool, CheckM/CheckM2, and GTDB-Tk) are intentionally not cited here as components of the Version 1.0 analysis.
+This file records the software and methodological references for the completed Version 1.0 demonstration and the Version 2.0 MAG reconstruction. The Version 2.0 analysis implemented MetaBAT2, MaxBin2, CONCOCT, DAS Tool and CheckM2 and recovered six candidate genome bins. GTDB-Tk was not required for the reconstruction objective and was not represented as a completed analysis.
 
 ## Galaxy
 
@@ -40,6 +38,26 @@ Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: quality asse
 
 Kang, D. D., Li, F., Kirton, E., Thomas, A., Egan, R., An, H., & Wang, Z. (2019). MetaBAT 2: an adaptive binning algorithm for robust and efficient genome reconstruction from metagenome assemblies. *PeerJ*, **7**, e7359. https://doi.org/10.7717/peerj.7359
 
+## MaxBin 2.0 — Version 2.0
+
+Wu, Y.-W., Simmons, B. A., & Singer, S. W. (2016). MaxBin 2.0: an automated binning algorithm to recover genomes from multiple metagenomic datasets. *Bioinformatics*, **32**(4), 605–607. https://doi.org/10.1093/bioinformatics/btv638
+
+## CONCOCT — Version 2.0
+
+Alneberg, J., Bjarnason, B. S., de Bruijn, I., Schirmer, M., Quick, J., Ijaz, U. Z., Lahti, L., Loman, N. J., Andersson, A. F., & Quince, C. (2014). Binning metagenomic contigs by coverage and composition. *Nature Methods*, **11**, 1144–1146. https://doi.org/10.1038/nmeth.3103
+
+## DAS Tool — Version 2.0
+
+Sieber, C. M. K., Probst, A. J., Sharrar, A., Thomas, B. C., Hess, M., Tringe, S. G., & Banfield, J. F. (2018). Recovery of genomes from metagenomes via a dereplication, aggregation and scoring strategy. *Nature Microbiology*, **3**, 836–843. https://doi.org/10.1038/s41564-018-0171-1
+
+## CheckM2 — Version 2.0
+
+Chklovski, A., Parks, D. H., Woodcroft, B. J., & Tyson, G. W. (2023). CheckM2: a rapid, scalable and accurate tool for assessing microbial genome quality using machine learning. *Nature Methods*, **20**, 1203–1212. https://doi.org/10.1038/s41592-023-01940-w
+
+## MAG reporting standards
+
+Bowers, R. M., Kyrpides, N. C., Stepanauskas, R., et al. (2017). Minimum information about a single amplified genome (MISAG) and a metagenome-assembled genome (MIMAG) of bacteria and archaea. *Nature Biotechnology*, **35**, 725–731. https://doi.org/10.1038/nbt.3893
+
 ## Citing this workflow
 
-When citing the workflow itself, use the Zenodo archival record described in the repository README and `CITATION.cff`. Software citations above should be included as appropriate when reporting analyses performed with the corresponding tools.
+The existing Zenodo DOI and `CITATION.cff` describe the archived Version 1.0 release. No new Version 2.0 DOI was asserted. The software citations above were included for the corresponding analyses performed in Versions 1.0 and 2.0.
