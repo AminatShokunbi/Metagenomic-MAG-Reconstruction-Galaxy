@@ -4,9 +4,9 @@
 
 **Latest published release:** [Version 2.0 — MAG Recovery and Quality Assessment (Zenodo)](https://doi.org/10.5281/zenodo.23441178) · **All-versions DOI:** [10.5281/zenodo.23144501](https://doi.org/10.5281/zenodo.23144501)
 
-## Project outcomes — completed Version 2.0 MAG reconstruction
+## Project status — Version 2.0 completed and archived
 
-The project was developed in Galaxy Australia to demonstrate the recovery and quality assessment of genome bins from shotgun metagenomic sequencing reads. The initial Version 1.0 demonstration used six SRA datasets and did not recover bins at the attempted MetaBAT2 thresholds. **Version 2.0 subsequently recovered and assessed genome bins** from SRA accession **SRR25158482**. The earlier Version 1.0 releases were preserved. **Version 2.0 was published on Zenodo on 17 October 2026 with version-specific DOI [10.5281/zenodo.23441178](https://doi.org/10.5281/zenodo.23441178).**
+**Status: Completed Version 2.0 reconstruction and CheckM2 assessment; Zenodo archive published.**\n\nThe project was developed in Galaxy Australia to demonstrate the recovery and quality assessment of genome bins from shotgun metagenomic sequencing reads. The initial Version 1.0 demonstration used six SRA datasets and did not recover bins at the attempted MetaBAT2 thresholds. **Version 2.0 subsequently recovered and assessed genome bins** from SRA accession **SRR25158482**. The earlier Version 1.0 releases were preserved. **Version 2.0 was published on Zenodo on 17 October 2026 with version-specific DOI [10.5281/zenodo.23441178](https://doi.org/10.5281/zenodo.23441178).**
 
 The Version 2.0 analysis assembled the reads using MEGAHIT, mapped reads back to the assembly for coverage estimation, and applied MetaBAT2, MaxBin2 and CONCOCT. The three prediction sets were integrated using DAS Tool, and the selected genome-bin FASTAs were assessed with CheckM2. The completed Galaxy history recorded **23 MetaBAT2 bins, 23 MaxBin2 bins, 53 CONCOCT candidate bin FASTAs, and six DAS Tool-selected bins**.
 
@@ -47,7 +47,7 @@ Galaxy should be cited independently of the individual bioinformatics tools exec
 
 Version 1.0 of this project was executed using a public Galaxy service. Citations for Galaxy do not replace citations for the individual software tools used in the workflow. Full citations for software implemented in Version 1.0 are provided in [`CITATIONS.md`](CITATIONS.md).
 
-## Version 1.0 Workflow
+## Version 1.0 Historical Workflow
 
 ```text
 NCBI SRA accessions
@@ -190,7 +190,7 @@ This repository intentionally records:
 
 The purpose is to make the analysis auditable and adaptable rather than to imply that identical parameters are universally optimal for all metagenomic datasets.
 
-## Version 1.0 Status
+## Version 1.0 Historical Status
 
 ### Completed
 
@@ -218,56 +218,57 @@ The purpose is to make the analysis auditable and adaptable rather than to imply
 
 This is intentional: those analyses require candidate genome bins, and Version 1.0 does not claim outputs that were not produced.
 
-## Version 2.0 Completed Analysis and Historical Roadmap
+## Version 2.0 — Completed MAG Reconstruction and Quality Assessment
 
-**Historical progress note — 11 October 2026:** Version 2.0 was being run in Galaxy Australia using SRR25158482. MEGAHIT, QUAST, contig filtering, Bowtie2 read recruitment and depth calculation are complete. **MetaBAT2 recovered 23 candidate bins and MaxBin2 independently reported 23 candidate bins** (not yet validated MAGs). MaxBin2's internal completeness estimates range 12.1–80.4%; these are not independent CheckM2 estimates. CONCOCT completed using fragment-level coverage and composition, followed by consensus merging and extraction of **53 candidate bins**. DAS Tool and CheckM2 are now complete (13 October 2026); GTDB-Tk remains pending. The assembly and earlier binning results are recorded in [`docs/version2_assembly_to_metabat2.md`](docs/version2_assembly_to_metabat2.md); exact CONCOCT inputs, settings, intermediate datasets, and outputs are recorded in [`docs/version2_concoct_binning.md`](docs/version2_concoct_binning.md).
-
-**Update — 13 October 2026: DAS Tool and CheckM2 completed.** DAS Tool (1.1.7+galaxy1) integrated corrected MaxBin2 table #401, MetaBAT2 table #280, and CONCOCT table #158 with filtered contigs #22. Six selected FASTA bins (#409–#414), contig-to-bin output #407 (6,281 assignments), and summary #406 were produced. CheckM2 (1.1.0+galaxy1) evaluated all six, yielding completeness **49.99–93.43%** and contamination **0.65–13.28%**. Four meet the numerical screen ≥50% completeness and <10% contamination; three meet ≥50% and <5%. These are screening thresholds, **not formal quality assignments**. See [full results and limitations](docs/version2_dastool_checkm2_results.md). GTDB-Tk and final catalogue are pending.\n\nThe historical roadmap follows below.
-
-
-Version 2.0 will continue the project using a larger **raw shotgun metagenomic read dataset** suitable for hands-on demonstration of genome-resolved reconstruction.
-
-The planned architecture is:
+The Version 2.0 analysis **was completed and archived on Zenodo**. It used public SRA reads **SRR25158482** and recovered candidate genome bins through the following stages:
 
 ```text
-Raw paired-end shotgun metagenomic reads
+SRA SRR25158482 (paired-end reads)
               |
               v
-     QC and preprocessing
+       Read quality checks
               |
               v
-      Assembly/co-assembly
+      MEGAHIT assembly
               |
               v
-Read mapping + coverage estimation
+      QUAST assessment
               |
-      +-------+-------+
-      |       |       |
-      v       v       v
+              v
+  Filter assembled contigs
+              |
+              v
+  Bowtie2 assembly read recruitment
+              |
+              v
+       Coverage estimates
+              |
+     +--------+--------+
+     |        |        |
+     v        v        v
   MetaBAT2  MaxBin2  CONCOCT
-      |       |       |
-      +-------+-------+
+  23 bins   23 bins   53 candidate bins
+     |        |        |
+     +--------+--------+
               |
               v
            DAS Tool
-     bin integration/refinement
+      Six selected bins
               |
               v
-         Refined bins
-              |
-              v
-       CheckM / CheckM2
-completeness and contamination
-              |
-              v
-           GTDB-Tk
-     taxonomic classification
-              |
-              v
-       Final MAG catalogue
+           CheckM2
+  Completeness and contamination
 ```
 
-Version 2.0 will preserve the distinction between raw binner outputs, DAS Tool-refined bins, quality-assessed MAGs, and taxonomically classified genomes.
+**Completed outcomes:** MetaBAT2 recovered 23 bins; MaxBin2 recovered 23 bins; CONCOCT yielded 53 candidate bin FASTAs; DAS Tool selected six bins, and CheckM2 assessed all six. Four passed a numerical screen of ≥50% completeness and <10% contamination. Three passed ≥50% completeness and <5% contamination. These thresholds do **not** establish formal high-quality MIMAG classifications.
+
+The completed Galaxy history and the exported workflow were documented separately. A corrected, assembly-specific MaxBin2 contig-to-bin table was supplied to DAS Tool as an external input. The latest exported workflow connected DAS Tool to CheckM2, but an **independent complete rerun of the export was not demonstrated**. For this reason, the repository documents **successful execution and reproducibility of the analytical procedure**, without claiming a validated one-click workflow for arbitrary new samples.
+
+**GTDB-Tk taxonomic classification was an optional downstream extension**, not a prerequisite for the completed reconstruction and quality-assessment objective. No GTDB-Tk classification of the Version 2.0 bins is claimed.
+
+Detailed records: [assembly and binning](docs/version2_assembly_to_metabat2.md), [CONCOCT](docs/version2_concoct_binning.md), [DAS Tool and CheckM2](docs/version2_dastool_checkm2_results.md), and [reproduce or adapt the workflow](docs/VERSION2_REPRODUCE_OR_ADAPT.md).
+
+**Published archive:** [Zenodo Version 2.0](https://doi.org/10.5281/zenodo.23441178).
 
 ## Repository Organization
 
